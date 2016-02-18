@@ -12,27 +12,27 @@ var initGulpTasks = require('react-component-gulp-tasks');
 
 var taskConfig = {
 
-	component: {
-		name: 'ReactSelectOption',
-		dependencies: [
-			'classnames',
-			'react',
-			'react-dom'
-		],
-		lib: 'lib'
-	},
+  component: {
+    name: 'ReactSelectOption',
+    dependencies: [
+      'classnames',
+      'react',
+      'react-dom'
+    ],
+    lib: 'lib'
+  },
 
-	example: {
-		src: 'example/src',
-		dist: 'example/dist',
-		files: [
-			'index.html',
-			'.gitignore'
-		],
-		scripts: [
-			'example.js'
-		]
-	}
+  example: {
+    src: 'example/src',
+    dist: 'example/dist',
+    files: [
+      'index.html',
+      '.gitignore'
+    ],
+    scripts: [
+      'example.js'
+    ]
+  }
 
 };
 

@@ -1,6 +1,6 @@
 import React from 'react';
 
-var InertSelect = React.createClass({
+const InertSelect = React.createClass({
   propTypes: {
     style: React.PropTypes.object,
 

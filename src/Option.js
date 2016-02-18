@@ -1,9 +1,14 @@
 import React from 'react';
 
-var InertSelect = React.createClass({
+const Option = React.createClass({
+  propTypes: {
+    children: React.PropTypes.node.isRequired,
+    value: React.PropTypes.any.isRequired,
+    text: React.PropTypes.string
+  },
   render() {
-    return <div></div>;
+    return <div>Stuff</div>;
   }
 });
 
-export default InertSelect;
+export default Option;
