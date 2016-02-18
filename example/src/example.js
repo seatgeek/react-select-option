@@ -10,7 +10,6 @@ var App = React.createClass({
   },
 
   handleChange(e, value) {
-    console.log('changin', e);
     this.setState({
       value
     });

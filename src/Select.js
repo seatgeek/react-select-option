@@ -6,15 +6,16 @@ import InertSelect from './InertSelect';
 import selectBackingHandlers from './selectBackingHandlers';
 import selectInertHandlers from './selectInertHandlers';
 
- //const hiddenSelectStyle = {
- // height: 0,
- // width: 0,
- // margin: 0,
- // border: 0,
- // padding: 0,
- // outline: 'none',
- // opacity: 0
- //};
+const hiddenSelectStyle = {
+  height: 0,
+  width: 0,
+  margin: 0,
+  border: 0,
+  padding: 0,
+  outline: 'none',
+  opacity: 0,
+  position: 'absolute'
+};
 
 const Select = React.createClass(
   Object.assign(selectBackingHandlers, selectInertHandlers, {
@@ -34,9 +35,11 @@ const Select = React.createClass(
     };
   },
 
-  buildShadowSelect() {
+  buildBackingSelect() {
     const children = React.Children.toArray(this.props.children);
     return <select {...this.generateBackingHandlers()}
+                   style={hiddenSelectStyle}
+                   ref={s => this._backingSelect = s}
       value={this.props.value}>
       {
         children.map(c => {
@@ -52,7 +55,7 @@ const Select = React.createClass(
 
   render() {
     return <div>
-      {this.buildShadowSelect()}
+      {this.buildBackingSelect()}
       <InertSelect
         {...this.generateInertHandlers()}
         value={this.props.value}

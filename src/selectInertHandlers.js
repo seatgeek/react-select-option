@@ -18,6 +18,7 @@ export default {
       isExpanded: true,
       isFocused: true
     });
+    this._backingSelect.focus();
   },
 
   handleInertSelectClosed() {
