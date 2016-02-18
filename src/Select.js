@@ -17,8 +17,9 @@ const hiddenSelectStyle = {
   position: 'absolute'
 };
 
-const Select = React.createClass(
-  Object.assign(selectBackingHandlers, selectInertHandlers, {
+const Select = React.createClass({
+  ...selectBackingHandlers,
+  ...selectInertHandlers,
   propTypes: {
     value: React.PropTypes.string.isRequired,
     children: React.PropTypes.arrayOf(React.PropTypes.node).isRequired,
@@ -35,11 +36,11 @@ const Select = React.createClass(
     };
   },
 
-  buildBackingSelect() {
+  buildBackingSelect(x) {
     const children = React.Children.toArray(this.props.children);
     return <select {...this.generateBackingHandlers()}
-                   style={hiddenSelectStyle}
-                   ref={s => this._backingSelect = s}
+      style={hiddenSelectStyle}
+      ref={s => this._backingSelect = s}
       value={this.props.value}>
       {
         children.map(c => {
@@ -66,6 +67,6 @@ const Select = React.createClass(
       </InertSelect>
     </div>;
   }
-}));
+});
 
 export default Select;

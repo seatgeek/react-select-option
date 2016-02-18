@@ -1,3 +1,12 @@
+/* @flow */
+
+import React from 'react';
+
+type InertHandlers = {
+  onExpanded: (a: any) => any,
+  onClosed: (a: any) => any
+};
+
 export default {
   /*
    INERT HANDLERS
@@ -6,14 +15,14 @@ export default {
    opening it, closing it, hovering over elements, keyboard
    control selections, and so forth.
    */
-  generateInertHandlers() {
+  generateInertHandlers(): InertHandlers {
     return {
       onExpanded: this.handleInertSelectExpanded,
       onClosed: this.handleInertSelectClosed
     };
   },
 
-  handleInertSelectExpanded() {
+  handleInertSelectExpanded(e: React.SyntheticMouseEvent | React.SyntheticTouchEvent) {
     this.setState({
       isExpanded: true,
       isFocused: true
@@ -21,7 +30,7 @@ export default {
     this._backingSelect.focus();
   },
 
-  handleInertSelectClosed() {
+  handleInertSelectClosed(e: React.SyntheticMouseEvent | React.SyntheticTouchEvent) {
     this.setState({
       isExpanded: false,
       isFocused: true

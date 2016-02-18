@@ -16,6 +16,13 @@ const InertSelect = React.createClass({
     onSelectIndex: React.PropTypes.func
   },
 
+  /*
+
+   */
+  createInteractiveOptions() {
+
+  },
+
   getDisplayingChild() {
     return React.Children.toArray(this.props.children).filter(c => {
       return c.props.value === this.props.value;

@@ -1,3 +1,14 @@
+/* @flow */
+
+import React from 'react';
+
+type BackingHandlers = {
+  onFocus: (e: React.SyntheticFocusEvent) => void;
+  onBlur: (e: React.SyntheticFocusEvent) => void;
+  onChange: (e: React.SyntheticEvent) => void;
+  onKeyUp: (e: React.SyntheticKeyboardEvent) => void;
+};
+
 export default {
   /*
    BACKING HANDLERS
@@ -6,7 +17,7 @@ export default {
    implementation of things like keyboard focus, including
    the element in the tab order, and autocomplete filling.
    */
-  generateBackingHandlers() {
+  generateBackingHandlers(): BackingHandlers {
     return {
       onFocus: this.handleBackingSelectFocus,
       onBlur: this.handleBackingSelectBlur,
@@ -15,12 +26,13 @@ export default {
     };
   },
 
-  handleBackingSelectChange(e) {
+  handleBackingSelectChange(e: React.SyntheticEvent) {
+    console.log(e, 'change')
     this.setState({
       isExpanded: false
     });
     if (this.props.onChange) {
-      this.props.onChange(e, e.target.value);
+      this.props.onChange(e);
     }
   },
 
@@ -34,13 +46,13 @@ export default {
    To work around this, we listen for the onKeyUp
    event and trigger a value change
    */
-  handleBackingSelectKey(e) {
+  handleBackingSelectKey(e: React.SyntheticKeyboardEvent) {
     if (this.props.onChange) {
-      this.props.onChange(e, e.target.value);
+      this.props.onChange(e);
     }
   },
 
-  handleBackingSelectFocus(e) {
+  handleBackingSelectFocus(e: React.SyntheticFocusEvent) {
     this.setState({
       isFocused: true
     });
@@ -49,7 +61,7 @@ export default {
     }
   },
 
-  handleBackingSelectBlur() {
+  handleBackingSelectBlur(e: React.SyntheticFocusEvent) {
     this.setState({
       isFocused: false
     });

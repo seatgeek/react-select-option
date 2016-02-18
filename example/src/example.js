@@ -9,9 +9,9 @@ var App = React.createClass({
     };
   },
 
-  handleChange(e, value) {
+  handleChange(e) {
     this.setState({
-      value
+      value: e.target.value
     });
   },
 
