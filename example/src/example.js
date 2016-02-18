@@ -19,12 +19,14 @@ var App = React.createClass({
   render() {
     return (
       <div>
+        <input/>
         <Select.Select onChange={this.handleChange} value={this.state.value}>
           <Select.Option value="A">Apple</Select.Option>
           <Select.Option value="B">Banana</Select.Option>
           <Select.Option value="D">Bandoneon</Select.Option>
           <Select.Option value="E">Cranberry</Select.Option>
         </Select.Select>
+        <input/>
       </div>
     );
   }
