@@ -7,7 +7,13 @@ const InertSelect = React.createClass({
     isExpanded: React.PropTypes.bool.isRequired,
     isFocused: React.PropTypes.bool.isRequired,
     value: React.PropTypes.any,
-    children: React.PropTypes.arrayOf(React.PropTypes.node)
+    children: React.PropTypes.arrayOf(React.PropTypes.node),
+
+    onExpanded: React.PropTypes.func,
+    onClosed: React.PropTypes.func,
+    onHoverIndex: React.PropTypes.func,
+    onActiveIndex: React.PropTypes.func,
+    onSelectIndex: React.PropTypes.func
   },
 
   getDisplayingChild() {
@@ -18,7 +24,8 @@ const InertSelect = React.createClass({
 
   render() {
     return <div style={{maxWidth: 200}}>
-      <div style={{border: `1px solid ${this.props.isFocused ? '#88f' : '#555'}`}}>
+      <div style={{border: `1px solid ${this.props.isFocused ? '#88f' : '#555'}`}}
+           onClick={this.props.isExpanded ? this.props.onClosed : this.props.onExpanded}>
         {this.getDisplayingChild()}
       </div>
       {this.props.isExpanded &&
