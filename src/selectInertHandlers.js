@@ -1,12 +1,3 @@
-/* @flow */
-
-import React from 'react';
-
-type InertHandlers = {
-  onExpanded: (a: any) => any,
-  onClosed: (a: any) => any
-};
-
 export default {
   /*
    INERT HANDLERS
@@ -15,7 +6,7 @@ export default {
    opening it, closing it, hovering over elements, keyboard
    control selections, and so forth.
    */
-  generateInertHandlers(): InertHandlers {
+  generateInertHandlers() {
     return {
       onExpanded: this.handleInertSelectExpanded,
       onClosed: this.handleInertSelectClosed,
@@ -26,7 +17,7 @@ export default {
     };
   },
 
-  handleInertSelectExpanded(e: React.SyntheticMouseEvent | React.SyntheticTouchEvent) {
+  handleInertSelectExpanded(e) {
     this.setState({
       isExpanded: true,
       isFocused: true
@@ -34,7 +25,7 @@ export default {
     this._backingSelect.focus();
   },
 
-  handleInertSelectClosed(e: React.SyntheticMouseEvent | React.SyntheticTouchEvent) {
+  handleInertSelectClosed(e) {
     this.setState({
       isExpanded: false,
       hoverIndex: undefined,
@@ -43,21 +34,21 @@ export default {
     });
   },
 
-  handleInertHoverIndex(i: number, v: string, e) {
+  handleInertHoverIndex(i, v, e) {
     this.props.onOptionHover(e, v);
     this.setState({
       hoverIndex: i
     });
   },
 
-  handleInertActiveIndex(i: number, v: string, e) {
+  handleInertActiveIndex(i, v, e) {
     this.setState({
       activeIndex: i
     });
     this.props.onOptionActive(e, v);
   },
 
-  handleInertSelectIndex(i: number, v: string, e) {
+  handleInertSelectIndex(i, v, e) {
     this.props.onChange(e, v);
     this.setState({
       isExpanded: false

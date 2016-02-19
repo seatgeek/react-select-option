@@ -1,18 +1,9 @@
-/* @flow */
-
 import React from 'react';
 
 const KEY_DOWN = 40;
 const KEY_UP = 38;
 const KEY_ENTER = 13;
 const KEY_TAB = 9;
-
-type BackingHandlers = {
-  onFocus: (e: React.SyntheticFocusEvent) => void;
-  onBlur: (e: React.SyntheticFocusEvent) => void;
-  onChange: (e: React.SyntheticEvent) => void;
-  onKeyUp: (e: React.SyntheticKeyboardEvent) => void;
-};
 
 export default {
   /*
@@ -22,7 +13,7 @@ export default {
    implementation of things like keyboard focus, including
    the element in the tab order, and autocomplete filling.
    */
-  generateBackingHandlers(): BackingHandlers {
+  generateBackingHandlers() {
     return {
       onFocus: this.handleBackingSelectFocus,
       onBlur: this.handleBackingSelectBlur,
@@ -33,7 +24,7 @@ export default {
     };
   },
 
-  handleBackingSelectChange(e: React.SyntheticEvent) {
+  handleBackingSelectChange(e) {
     this.setState({
       isExpanded: false
     });
@@ -72,7 +63,7 @@ export default {
    To work around this, we listen for the onKeyUp
    event and trigger a value change
    */
-  handleBackingSelectKey(e: React.SyntheticKeyboardEvent) {
+  handleBackingSelectKey(e) {
     if (this.props.onChange) {
       this.props.onChange(e, e.target.value);
     }
@@ -144,7 +135,7 @@ export default {
     this.setState(newStateObject);
   },
 
-  handleBackingSelectFocus(e: React.SyntheticFocusEvent) {
+  handleBackingSelectFocus(e) {
     this.setState({
       isFocused: true
     });
@@ -165,7 +156,7 @@ export default {
       1. The expanded container will collapse on blur.
       2. The
    */
-  handleBackingSelectBlur(e: React.SyntheticFocusEvent) {
+  handleBackingSelectBlur(e) {
     if (this.props.onBlur) {
       this.props.onBlur(e);
     }
