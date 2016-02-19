@@ -24,9 +24,21 @@ const Select = React.createClass({
     value: React.PropTypes.string.isRequired,
     children: React.PropTypes.arrayOf(React.PropTypes.node).isRequired,
 
+    onOptionHover: React.PropTypes.func,
+    onOptionActive: React.PropTypes.func,
+    onOptionSelected: React.PropTypes.func,
+
     onChange: React.PropTypes.func,
     onFocus: React.PropTypes.func,
     onBlur: React.PropTypes.func
+  },
+
+  getDefaultProps() {
+    return {
+      onOptionHover: () => {},
+      onOptionActive: () => {},
+      onOptionSelected: () => {},
+    }
   },
 
   getInitialState() {

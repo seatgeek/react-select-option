@@ -1,3 +1,5 @@
+/* @flow */
+
 import React from 'react';
 
 const InertSelect = React.createClass({
@@ -11,19 +13,27 @@ const InertSelect = React.createClass({
 
     onExpanded: React.PropTypes.func,
     onClosed: React.PropTypes.func,
-    onHoverIndex: React.PropTypes.func,
-    onActiveIndex: React.PropTypes.func,
-    onSelectIndex: React.PropTypes.func
+
+    onHoverIndex: React.PropTypes.func.isRequired,
+    onActiveIndex: React.PropTypes.func.isRequired,
+    onSelectIndex: React.PropTypes.func.isRequired
   },
 
   /*
-
+    This attaches handlers to each prop.
    */
-  createInteractiveOptions() {
-
+  createInteractiveOptions(): Array<React.Element<any, any, any>> {
+    return React.Children.map(this.props.children, (c, i) => {
+      return React.cloneElement(c, {
+        onMouseOver: this.props.onHoverIndex.bind(null, i, c.props.value),
+        onMouseDown: this.props.onActiveIndex.bind(null, i, c.props.value),
+        onMouseUp: this.props.onSelectIndex.bind(null, i, c.props.value),
+        onClick: this.props.onHoverIndex.bind(null, i, c.props.value)
+      });
+    });
   },
 
-  getDisplayingChild() {
+  getDisplayingChild(): React.Element<any, any, any> {
     return React.Children.toArray(this.props.children).filter(c => {
       return c.props.value === this.props.value;
     });
@@ -37,7 +47,7 @@ const InertSelect = React.createClass({
       </div>
       {this.props.isExpanded &&
         <div>
-          {this.props.children}
+          {this.createInteractiveOptions()}
         </div>
       }
     </div>;

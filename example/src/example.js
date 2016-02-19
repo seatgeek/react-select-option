@@ -15,11 +15,17 @@ var App = React.createClass({
     });
   },
 
+  handleHover(event, index) {
+    console.log('parenting hover', event, index)
+  },
+
   render() {
     return (
       <div>
         <input/>
-        <Select.Select onChange={this.handleChange} value={this.state.value}>
+        <Select.Select onChange={this.handleChange}
+                       onOptionHover={this.handleHover}
+                       value={this.state.value}>
           <Select.Option value="A">Apple</Select.Option>
           <Select.Option value="B">Banana</Select.Option>
           <Select.Option value="D">Bandoneon</Select.Option>

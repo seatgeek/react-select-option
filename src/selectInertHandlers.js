@@ -18,7 +18,11 @@ export default {
   generateInertHandlers(): InertHandlers {
     return {
       onExpanded: this.handleInertSelectExpanded,
-      onClosed: this.handleInertSelectClosed
+      onClosed: this.handleInertSelectClosed,
+
+      onHoverIndex: this.handleInertHoverIndex,
+      onActiveIndex: this.handleInertActiveIndex,
+      onSelectIndex: this.handleInertSelectIndex
     };
   },
 
@@ -35,5 +39,20 @@ export default {
       isExpanded: false,
       isFocused: true
     });
+  },
+
+  handleInertHoverIndex(i: number, v: string, e) {
+    console.log('inert hover with index', i)
+    this.props.onOptionHover(e, i, v);
+  },
+
+  handleInertActiveIndex(i: number, v: string, e) {
+    this.props.onOptionActive(e, i, v);
+    console.log('inert active with index and value', i , v)
+  },
+
+  handleInertSelectIndex(i: number, v: string, e) {
+    this.props.onOptionSelected(e, i, v);
+    console.log('third thing')
   }
 }
