@@ -37,6 +37,8 @@ export default {
   handleInertSelectClosed(e: React.SyntheticMouseEvent | React.SyntheticTouchEvent) {
     this.setState({
       isExpanded: false,
+      hoverIndex: undefined,
+      activeIndex: undefined,
       isFocused: true
     });
   },

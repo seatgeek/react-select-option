@@ -46,12 +46,15 @@ const Select = React.createClass({
       isFocused: false,
 
       hoverIndex: undefined,
-      activeIndex: undefined,
-      selectedIndex: undefined
+      activeIndex: undefined
     };
   },
 
-  buildBackingSelect(x) {
+  getSelectedIndex() {
+    return React.Children.map(this.props.children, c => c.props.value).indexOf(this.props.value);
+  },
+
+  buildBackingSelect() {
     const children = React.Children.toArray(this.props.children);
     return <select {...this.generateBackingHandlers()}
       style={hiddenSelectStyle}
@@ -80,7 +83,7 @@ const Select = React.createClass({
 
         hoverIndex={this.state.hoverIndex}
         activeIndex={this.state.activeIndex}
-        selectedIndex={this.state.selectedIndex}
+        selectedIndex={this.getSelectedIndex()}
       >
         {this.props.children}
       </InertSelect>

@@ -2,6 +2,10 @@
 
 import React from 'react';
 
+const KEY_DOWN = 40;
+const KEY_UP = 38;
+const KEY_ENTER = 13;
+
 type BackingHandlers = {
   onFocus: (e: React.SyntheticFocusEvent) => void;
   onBlur: (e: React.SyntheticFocusEvent) => void;
@@ -22,7 +26,8 @@ export default {
       onFocus: this.handleBackingSelectFocus,
       onBlur: this.handleBackingSelectBlur,
       onChange: this.handleBackingSelectChange,
-      onKeyUp: this.handleBackingSelectKey
+      onKeyUp: this.handleBackingSelectKey,
+      onKeyDown: this.handleBackingSelectKeyDown
     };
   },
 
@@ -49,6 +54,54 @@ export default {
     if (this.props.onChange) {
       this.props.onChange(e, e.target.value);
     }
+  },
+
+  /*
+   HACK FOR: Chrome!
+
+   Tonight's lucky hack winner is Chrome. Even though
+   we set the select box to have height 0, width 0,
+   opacity 0, and so on and so forth in an attempt to
+   consign it to the dustbin of invisibility, Chrome finds
+   that it is a good idea to show the select dropdown
+   menu.
+
+   Here we stop that silly thing from happening and trigger our
+   custom menu instead..
+   */
+  handleBackingSelectKeyDown(e) {
+    e.preventDefault();
+
+    var newStateObject = {};
+    var numberChildren = React.Children.count(this.props.children);
+
+    if (e.keyCode === KEY_UP || e.keyCode === KEY_DOWN) {
+      //e.preventDefault();
+      newStateObject.isExpanded = true;
+    } else if (e.keyCode === KEY_ENTER && this.state.hoverIndex) {
+      console.log('enter key')
+      this.setState({
+        hoverIndex: undefined,
+        isExpanded: false
+      });
+      this.props.onChange(e,
+        React.Children.toArray(this.props.children)[this.state.hoverIndex].props.value);
+      return;
+    } else {
+      return;
+    }
+
+    if (this.state.hoverIndex !== undefined) {
+      newStateObject.hoverIndex = e.keyCode === KEY_DOWN
+        ? Math.min(this.state.hoverIndex + 1, numberChildren - 1)
+        : Math.max(0, this.state.hoverIndex - 1);
+    } else {
+      newStateObject.hoverIndex = this.getSelectedIndex();
+    }
+
+    console.log(newStateObject)
+
+    this.setState(newStateObject);
   },
 
   handleBackingSelectFocus(e: React.SyntheticFocusEvent) {
