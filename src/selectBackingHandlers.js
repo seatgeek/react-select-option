@@ -59,19 +59,13 @@ export default {
   },
 
   /*
-   HACK FOR: Chrome!
-
-   Tonight's lucky hack winner is Chrome. Even though
-   we set the select box to have height 0, width 0,
-   opacity 0, and so on and so forth in an attempt to
-   consign it to the dustbin of invisibility, Chrome finds
-   that it is a good idea to show the select dropdown
-   menu.
-
-   Here we stop that silly thing from happening and trigger our
-   custom menu instead..
+    Keyboard Section!
+    This section handles all keypress events. Naturally,
+    such events pass through the backing select.
    */
   handleBackingSelectKeyDown(e) {
+    // Allow focus changing events as well as
+    // page refresh events to pass through.
     // What other keys do we need to allow through?
     if (e.keyCode === KEY_TAB) {
       this.setState({
@@ -82,8 +76,28 @@ export default {
       return;
     }
 
-    e.preventDefault();
 
+    /*
+     HACK FOR: Chrome!
+
+     Tonight's lucky hack winner is Chrome. Even though
+     we set the select box to have height 0, width 0,
+     opacity 0, and so on and so forth in an attempt to
+     consign it to the dustbin of invisibility, Chrome finds
+     that it is a good idea to show the select dropdown
+     menu.
+
+     Here we stop that silly thing from happening and trigger our
+     custom menu instead.
+     */
+    if (e.keyCode === KEY_UP || e.keyCode === KEY_DOWN) {
+      e.preventDefault();
+    }
+
+    /*
+      Expands the menu when necessary and moves the
+      keyboard hover state around.
+     */
     var newStateObject = {};
     var numberChildren = React.Children.count(this.props.children);
 
