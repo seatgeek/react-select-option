@@ -1,4 +1,5 @@
 import React from 'react';
+import ReactDOM from 'react-dom';
 
 const KEY_DOWN = 40;
 const KEY_UP = 38;
@@ -30,26 +31,6 @@ export default {
     });
     if (this.props.onChange) {
       this.props.onChange(e, e.target.value);
-    }
-
-    /*
-    HACK FOR: Firefox!
-
-    Tonight's lucky hack winner is Firefox. When we
-    press the down arrow key on a <select> in Firefox,
-    the next option is automatically selected, unlike
-    in Chrome where pressing the down arrow simply
-    opens the menu.
-
-    We do not fix this, but simply keep the hovered
-    item consistent with the selected value if the
-    hovered value exists.
-     */
-
-    if (this.state.hoverIndex !== undefined) {
-      this.setState({
-        hoverIndex: this.getSelectedIndex(e.target.value)
-      });
     }
   },
 
@@ -132,6 +113,7 @@ export default {
       newStateObject.hoverIndex = this.getSelectedIndex(this.props.value);
     }
 
+    ReactDOM.findDOMNode(this._backingSelect).value = this.props.value;
     this.setState(newStateObject);
   },
 

@@ -82,8 +82,8 @@ const Select = React.createClass({
   },
 
   /*
-    Includes backing and inert handlers
-    so that this file is not ridiculously sized
+    Imports methods from three other files so that
+    this one is not ridiculously sized.
    */
   ...selectBackingHandlers,
   ...selectInertHandlers,
@@ -94,6 +94,7 @@ const Select = React.createClass({
     return <select {...this.generateBackingHandlers()}
       style={hiddenSelectStyle}
       ref={s => (this._backingSelect = s)}
+      size="14"
       value={this.props.value}>
       {
         children.map((c, i) => {
