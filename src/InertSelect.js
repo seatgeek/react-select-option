@@ -14,6 +14,10 @@ const InertSelect = React.createClass({
     onExpanded: React.PropTypes.func,
     onClosed: React.PropTypes.func,
 
+    hoverIndex: React.PropTypes.number,
+    activeIndex: React.PropTypes.number,
+    selectedIndex: React.PropTypes.number,
+
     onHoverIndex: React.PropTypes.func.isRequired,
     onActiveIndex: React.PropTypes.func.isRequired,
     onSelectIndex: React.PropTypes.func.isRequired
@@ -25,6 +29,9 @@ const InertSelect = React.createClass({
   createInteractiveOptions(): Array<React.Element<any, any, any>> {
     return React.Children.map(this.props.children, (c, i) => {
       return React.cloneElement(c, {
+        isHovering: this.props.hoverIndex === i,
+        isActive: this.props.activeIndex === i,
+        isSelected: this.props.selectedIndex === i,
         onMouseOver: this.props.onHoverIndex.bind(null, i, c.props.value),
         onMouseDown: this.props.onActiveIndex.bind(null, i, c.props.value),
         onMouseUp: this.props.onSelectIndex.bind(null, i, c.props.value),

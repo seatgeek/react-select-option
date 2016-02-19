@@ -44,7 +44,11 @@ const Select = React.createClass({
   getInitialState() {
     return {
       isExpanded: false,
-      isFocused: false
+      isFocused: false,
+
+      hoverIndex: undefined,
+      activeIndex: undefined,
+      selectedIndex: undefined
     };
   },
 
@@ -74,6 +78,10 @@ const Select = React.createClass({
         value={this.props.value}
         isExpanded={this.state.isExpanded}
         isFocused={this.state.isFocused}
+
+        hoverIndex={this.state.hoverIndex}
+        activeIndex={this.state.activeIndex}
+        selectedIndex={this.state.selectedIndex}
       >
         {this.props.children}
       </InertSelect>

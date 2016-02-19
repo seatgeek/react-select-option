@@ -44,15 +44,24 @@ export default {
   handleInertHoverIndex(i: number, v: string, e) {
     console.log('inert hover with index', i)
     this.props.onOptionHover(e, i, v);
+    this.setState({
+      hoverIndex: i
+    });
   },
 
   handleInertActiveIndex(i: number, v: string, e) {
+    this.setState({
+      activeIndex: i
+    });
     this.props.onOptionActive(e, i, v);
-    console.log('inert active with index and value', i , v)
+    console.log('inert active with index and value', i , v);
   },
 
   handleInertSelectIndex(i: number, v: string, e) {
     this.props.onOptionSelected(e, i, v);
+    this.setState({
+      selectedIndex: i
+    });
     console.log('third thing')
   }
 }
