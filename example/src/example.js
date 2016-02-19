@@ -17,14 +17,14 @@ var App = React.createClass({
   },
 
   handleChange(e, value) {
-    console.log('changed', e)
+    //console.log('changed', e)
     this.setState({
       value: value
     });
   },
 
   handleHover(event, index) {
-    console.log('parenting hover', event, index)
+    //console.log('parenting hover', event, index)
   },
 
   render() {

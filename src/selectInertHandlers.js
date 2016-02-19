@@ -51,16 +51,20 @@ export default {
   },
 
   handleInertActiveIndex(i: number, v: string, e) {
+    console.log('mouse down')
     this.setState({
-      activeIndex: i
+      activeIndex: i,
+      isInSelectingState: true
     });
     this.props.onOptionActive(e, v);
   },
 
   handleInertSelectIndex(i: number, v: string, e) {
+    console.log(e)
     this.props.onChange(e, v);
     this.setState({
-      isExpanded: false
+      isExpanded: false,
+      isInSelectingState: false
     });
     console.log('third thing')
   }

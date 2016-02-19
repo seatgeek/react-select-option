@@ -5,6 +5,7 @@ import React from 'react';
 const KEY_DOWN = 40;
 const KEY_UP = 38;
 const KEY_ENTER = 13;
+const KEY_TAB = 9;
 
 type BackingHandlers = {
   onFocus: (e: React.SyntheticFocusEvent) => void;
@@ -71,7 +72,11 @@ export default {
    custom menu instead..
    */
   handleBackingSelectKeyDown(e) {
-    e.preventDefault();
+    if (e.keyCode !== KEY_TAB) {
+      e.preventDefault();
+    } else {
+      return;
+    }
 
     var newStateObject = {};
     var numberChildren = React.Children.count(this.props.children);
@@ -109,13 +114,28 @@ export default {
     }
   },
 
+  /*
+    Let us talk about the relation of isInSelectingState to
+    the blur event.
+
+    If we are in a selecting state (i.e. a mousedown event has
+    been received on an Option), this means that in the next tick a
+    blur will occur on the backing <select> element. This is
+    undesirable for two reasons.
+
+      1. The expanded container will collapse on blur.
+   */
   handleBackingSelectBlur(e: React.SyntheticFocusEvent) {
     this.setState({
       isFocused: false,
-      //isExpanded: false
+      isExpanded: this.state.isInSelectingState
     });
     if (this.props.onBlur) {
       this.props.onBlur(e);
+    }
+
+    if (this.state.isInSelectingState) {
+      this._backingSelect.focus();
     }
   }
 }

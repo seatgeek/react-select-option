@@ -7,14 +7,14 @@ import selectBackingHandlers from './selectBackingHandlers';
 import selectInertHandlers from './selectInertHandlers';
 
 const hiddenSelectStyle = {
-  //height: 0,
-  //width: 0,
-  //margin: 0,
-  //border: 0,
-  //padding: 0,
-  //outline: 'none',
-  //opacity: 0,
-  //position: 'absolute'
+  height: 0,
+  width: 0,
+  margin: 0,
+  border: 0,
+  padding: 0,
+  outline: 'none',
+  opacity: 0,
+  position: 'absolute'
 };
 
 const Select = React.createClass({
@@ -44,6 +44,12 @@ const Select = React.createClass({
     return {
       isExpanded: false,
       isFocused: false,
+
+      // This sequence of events occurs when we click on
+      // an option in the inert select:
+      // mouseDown + backing select blur -> mouseup
+      // we keep
+      isInSelectingState: false,
 
       hoverIndex: undefined,
       activeIndex: undefined
