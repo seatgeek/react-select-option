@@ -1,14 +1,6 @@
 import React from 'react';
 import Invariant from 'invariant';
 
-var sequenceFuncs = (...functions) => {
-  return (...args) => {
-    functions.forEach(f => {
-      f.apply(f, args);
-    });
-  };
-};
-
 const Option = React.createClass({
   propTypes: {
     children: React.PropTypes.oneOfType([React.PropTypes.node, React.PropTypes.func]).isRequired,
