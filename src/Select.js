@@ -94,7 +94,9 @@ const Select = React.createClass({
     return <select {...this.generateBackingHandlers()}
       style={hiddenSelectStyle}
       ref={s => (this._backingSelect = s)}
-      size="14"
+      // HACK: for Firefox!
+      // Further reading: this most fun issue https://bugzilla.mozilla.org/show_bug.cgi?id=126379
+      size="2"
       value={this.props.value}>
       {
         children.map((c, i) => {
