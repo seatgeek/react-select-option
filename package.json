@@ -1,6 +1,6 @@
 {
   "name": "react-select-option",
-  "version": "1.0.0",
+  "version": "0.1.0",
   "description": "react-select-option",
   "main": "lib/",
   "author": "Gareth Tan",
@@ -45,6 +45,7 @@
     "start": "gulp dev",
     "test": "echo \"no tests yet\" && exit 0",
     "typecheck": "flow check",
+    "verify": "npm run lint && npm run typecheck",
     "watch": "gulp watch:lib"
   },
   "keywords": [
