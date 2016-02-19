@@ -19,8 +19,6 @@ const hiddenSelectStyle = {
 };
 
 const Select = React.createClass({
-  ...selectBackingHandlers,
-  ...selectInertHandlers,
   propTypes: {
     value: React.PropTypes.string.isRequired,
     children: React.PropTypes.arrayOf(React.PropTypes.node).isRequired,
@@ -38,7 +36,7 @@ const Select = React.createClass({
       onOptionHover: () => {},
       onOptionActive: () => {},
       onChange: () => {},
-    }
+    };
   },
 
   getInitialState() {
@@ -73,7 +71,7 @@ const Select = React.createClass({
           isExpanded: false
         });
       });
-    } catch(e) {}
+    } catch (e) {}
   },
 
   componentWillUnmount() {
@@ -81,6 +79,13 @@ const Select = React.createClass({
       window.removeEventListener(this.globalEventListener);
     } catch (e) {}
   },
+
+  /*
+    Includes backing and inert handlers
+    so that this file is not ridiculously sized
+   */
+  ...selectBackingHandlers,
+  ...selectInertHandlers,
 
   // Returns the value of the element that is currently
   // being hovered
@@ -96,7 +101,7 @@ const Select = React.createClass({
     const children = React.Children.toArray(this.props.children);
     return <select {...this.generateBackingHandlers()}
       style={hiddenSelectStyle}
-      ref={s => this._backingSelect = s}
+      ref={s => (this._backingSelect = s)}
       value={this.props.value}>
       {
         children.map((c, i) => {
@@ -114,7 +119,7 @@ const Select = React.createClass({
     return <div>
       {this.buildBackingSelect()}
       <InertSelect
-        ref={s => this._inertSelect = s}
+        ref={s => (this._inertSelect = s)}
         {...this.generateInertHandlers()}
         value={this.props.value}
         isExpanded={this.state.isExpanded}

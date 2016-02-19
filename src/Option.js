@@ -1,5 +1,4 @@
 import React from 'react';
-import Invariant from 'invariant';
 
 const Option = React.createClass({
   propTypes: {
@@ -16,18 +15,18 @@ const Option = React.createClass({
     onMouseDown: React.PropTypes.func.isRequired
   },
 
-  shouldComponentUpdate(nextProps) {
-    return this.props.isHovering !== nextProps.isHovering ||
-        this.props.isActive !== nextProps.isActive ||
-        this.props.isSelected !== nextProps.isSelected;
-  },
-
   getDefaultProps() {
     return {
       onMouseOver: () => {},
       onMouseUp: () => {},
       onMouseDown: () => {}
     };
+  },
+
+  shouldComponentUpdate(nextProps) {
+    return this.props.isHovering !== nextProps.isHovering ||
+        this.props.isActive !== nextProps.isActive ||
+        this.props.isSelected !== nextProps.isSelected;
   },
 
   getRenderable() {

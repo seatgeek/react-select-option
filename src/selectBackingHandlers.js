@@ -96,7 +96,6 @@ export default {
       return;
     }
 
-
     /*
      HACK FOR: Chrome!
 
@@ -133,7 +132,6 @@ export default {
     } else {
       return;
     }
-
 
     if (this.state.hoverIndex !== undefined) {
       newStateObject.hoverIndex = e.keyCode === KEY_DOWN
@@ -176,4 +174,4 @@ export default {
       this._backingSelect.focus();
     }
   }
-}
+};

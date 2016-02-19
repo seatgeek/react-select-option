@@ -29,7 +29,7 @@ export default {
   handleInertSelectExpanded(e: React.SyntheticMouseEvent | React.SyntheticTouchEvent) {
     this.setState({
       isExpanded: true,
-      isFocused: true,
+      isFocused: true
     });
     this._backingSelect.focus();
   },
@@ -39,7 +39,7 @@ export default {
       isExpanded: false,
       hoverIndex: undefined,
       activeIndex: undefined,
-      isFocused: true,
+      isFocused: true
     });
   },
 
@@ -51,19 +51,16 @@ export default {
   },
 
   handleInertActiveIndex(i: number, v: string, e) {
-    console.log('mouse down')
     this.setState({
-      activeIndex: i,
+      activeIndex: i
     });
     this.props.onOptionActive(e, v);
   },
 
   handleInertSelectIndex(i: number, v: string, e) {
-    console.log(e, 'selecting index')
     this.props.onChange(e, v);
     this.setState({
       isExpanded: false
     });
-    console.log('third thing')
   }
-}
+};
