@@ -40,6 +40,26 @@ export default {
     if (this.props.onChange) {
       this.props.onChange(e, e.target.value);
     }
+
+    /*
+    HACK FOR: Firefox!
+
+    Tonight's lucky hack winner is Firefox. When we
+    press the down arrow key on a <select> in Firefox,
+    the next option is automatically selected, unlike
+    in Chrome where pressing the down arrow simply
+    opens the menu.
+
+    We do not fix this, but simply keep the hovered
+    item consistent with the selected value if the
+    hovered value exists.
+     */
+
+    if (this.state.hoverIndex !== undefined) {
+      this.setState({
+        hoverIndex: this.getSelectedIndex(e.target.value)
+      });
+    }
   },
 
   /*
@@ -114,12 +134,13 @@ export default {
       return;
     }
 
+
     if (this.state.hoverIndex !== undefined) {
       newStateObject.hoverIndex = e.keyCode === KEY_DOWN
         ? Math.min(this.state.hoverIndex + 1, numberChildren - 1)
         : Math.max(0, this.state.hoverIndex - 1);
     } else {
-      newStateObject.hoverIndex = this.getSelectedIndex();
+      newStateObject.hoverIndex = this.getSelectedIndex(this.props.value);
     }
 
     this.setState(newStateObject);

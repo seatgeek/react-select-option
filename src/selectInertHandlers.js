@@ -35,7 +35,6 @@ export default {
   },
 
   handleInertSelectClosed(e: React.SyntheticMouseEvent | React.SyntheticTouchEvent) {
-    console.log('closed')
     this.setState({
       isExpanded: false,
       hoverIndex: undefined,

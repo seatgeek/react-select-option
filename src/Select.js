@@ -88,8 +88,8 @@ const Select = React.createClass({
     return React.Children.toArray(this.props.children)[hoverIndex].props.value;
   },
 
-  getSelectedIndex() {
-    return React.Children.map(this.props.children, c => c.props.value).indexOf(this.props.value);
+  getSelectedIndex(value) {
+    return React.Children.map(this.props.children, c => c.props.value).indexOf(value);
   },
 
   buildBackingSelect() {
@@ -122,7 +122,7 @@ const Select = React.createClass({
 
         hoverIndex={this.state.hoverIndex}
         activeIndex={this.state.activeIndex}
-        selectedIndex={this.getSelectedIndex()}
+        selectedIndex={this.getSelectedIndex(this.props.value)}
       >
         {this.props.children}
       </InertSelect>
