@@ -69,7 +69,9 @@ const Select = React.createClass({
 
         this.setState({
           isFocused: false,
-          isExpanded: false
+          isExpanded: false,
+          activeIndex: undefined,
+          hoverIndex: undefined
         });
       });
     } catch (e) {}

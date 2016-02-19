@@ -34,9 +34,8 @@ var App = React.createClass({
                        value={this.state.value}>
           {staticData.map(d => {
             return <Select.Option value={d.value} text={d.text} key={d.value}>
-              {hover => {
-                console.log('a function call was made');
-                return d.text + (hover ? '!' : '');
+              {(hover, active, selected) => {
+                return d.text + (hover ? 'H' : '') + (active ? '@' : '') + (selected ? '§' : '');
               }}
             </Select.Option>;
           })}

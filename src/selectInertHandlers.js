@@ -51,7 +51,9 @@ export default {
   handleInertSelectIndex(i, v, e) {
     this.props.onChange(e, v);
     this.setState({
-      isExpanded: false
+      isExpanded: false,
+      activeIndex: undefined,
+      hoverIndex: undefined
     });
   }
 };
