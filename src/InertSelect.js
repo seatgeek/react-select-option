@@ -27,6 +27,7 @@ const InertSelect = React.createClass({
     This attaches handlers to each prop.
    */
   createInteractiveOptions(): Array<React.Element<any, any, any>> {
+    // Can we cache this?
     return React.Children.map(this.props.children, (c, i) => {
       return React.cloneElement(c, {
         isHovering: this.props.hoverIndex === i,

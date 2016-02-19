@@ -24,11 +24,10 @@ const Select = React.createClass({
     value: React.PropTypes.string.isRequired,
     children: React.PropTypes.arrayOf(React.PropTypes.node).isRequired,
 
-    onOptionHover: React.PropTypes.func,
-    onOptionActive: React.PropTypes.func,
-    onOptionSelected: React.PropTypes.func,
+    onOptionHover: React.PropTypes.func.isRequired,
+    onOptionActive: React.PropTypes.func.isRequired,
 
-    onChange: React.PropTypes.func,
+    onChange: React.PropTypes.func.isRequired,
     onFocus: React.PropTypes.func,
     onBlur: React.PropTypes.func
   },
@@ -37,7 +36,7 @@ const Select = React.createClass({
     return {
       onOptionHover: () => {},
       onOptionActive: () => {},
-      onOptionSelected: () => {},
+      onChange: () => {},
     }
   },
 
@@ -59,11 +58,11 @@ const Select = React.createClass({
       ref={s => this._backingSelect = s}
       value={this.props.value}>
       {
-        children.map(c => {
+        children.map((c, i) => {
           Invariant(c.type === Option, `The Select component should
           only take Select.Option instances as children.`);
-          return <option value={c.props.value} key={c.props.value}>
-            {typeof c.props.children === 'string' ? c.props.children : c.props.text}
+          return <option value={c.props.value} key={c.props.value} index={i}>
+            {c.props.text || c.props.value}
           </option>;
         })
       }

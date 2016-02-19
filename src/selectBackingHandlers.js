@@ -27,12 +27,11 @@ export default {
   },
 
   handleBackingSelectChange(e: React.SyntheticEvent) {
-    console.log(e, 'change')
     this.setState({
       isExpanded: false
     });
     if (this.props.onChange) {
-      this.props.onChange(e);
+      this.props.onChange(e, e.target.value);
     }
   },
 
@@ -48,7 +47,7 @@ export default {
    */
   handleBackingSelectKey(e: React.SyntheticKeyboardEvent) {
     if (this.props.onChange) {
-      this.props.onChange(e);
+      this.props.onChange(e, e.target.value);
     }
   },
 

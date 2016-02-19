@@ -16,10 +16,10 @@ var App = React.createClass({
     };
   },
 
-  handleChange(e) {
-    console.log('changed')
+  handleChange(e, value) {
+    console.log('changed', e)
     this.setState({
-      value: e.target.value
+      value: value
     });
   },
 
@@ -35,8 +35,8 @@ var App = React.createClass({
                        onOptionHover={this.handleHover}
                        value={this.state.value}>
           {staticData.map(d => {
-            return <Select.Option value={d.value}>
-              {(hover, active, selected) => {
+            return <Select.Option value={d.value} text={d.text}>
+              {hover => {
                 console.log('a function call was made')
                 return d.text + (hover ? '!' : '');
               }}
