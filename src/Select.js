@@ -7,14 +7,14 @@ import selectBackingHandlers from './selectBackingHandlers';
 import selectInertHandlers from './selectInertHandlers';
 
 const hiddenSelectStyle = {
-  height: 0,
-  width: 0,
-  margin: 0,
-  border: 0,
-  padding: 0,
-  outline: 'none',
-  opacity: 0,
-  position: 'absolute'
+  //height: 0,
+  //width: 0,
+  //margin: 0,
+  //border: 0,
+  //padding: 0,
+  //outline: 'none',
+  //opacity: 0,
+  //position: 'absolute'
 };
 
 const Select = React.createClass({
@@ -48,6 +48,12 @@ const Select = React.createClass({
       hoverIndex: undefined,
       activeIndex: undefined
     };
+  },
+
+  // Returns the value of the element that is currently
+  // being hovered
+  getHoveredValue(hoverIndex) {
+    return React.Children.toArray(this.props.children)[hoverIndex].props.value;
   },
 
   getSelectedIndex() {

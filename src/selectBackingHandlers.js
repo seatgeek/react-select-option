@@ -27,7 +27,8 @@ export default {
       onBlur: this.handleBackingSelectBlur,
       onChange: this.handleBackingSelectChange,
       onKeyUp: this.handleBackingSelectKey,
-      onKeyDown: this.handleBackingSelectKeyDown
+      onKeyDown: this.handleBackingSelectKeyDown,
+      onKeyPress: this.handleBackingSelectKeyboardActions
     };
   },
 
@@ -76,16 +77,13 @@ export default {
     var numberChildren = React.Children.count(this.props.children);
 
     if (e.keyCode === KEY_UP || e.keyCode === KEY_DOWN) {
-      //e.preventDefault();
       newStateObject.isExpanded = true;
     } else if (e.keyCode === KEY_ENTER && this.state.hoverIndex) {
-      console.log('enter key')
+      this.props.onChange(e, this.getHoveredValue(this.state.hoverIndex));
       this.setState({
         hoverIndex: undefined,
         isExpanded: false
       });
-      this.props.onChange(e,
-        React.Children.toArray(this.props.children)[this.state.hoverIndex].props.value);
       return;
     } else {
       return;
@@ -98,8 +96,6 @@ export default {
     } else {
       newStateObject.hoverIndex = this.getSelectedIndex();
     }
-
-    console.log(newStateObject)
 
     this.setState(newStateObject);
   },
@@ -115,7 +111,8 @@ export default {
 
   handleBackingSelectBlur(e: React.SyntheticFocusEvent) {
     this.setState({
-      isFocused: false
+      isFocused: false,
+      //isExpanded: false
     });
     if (this.props.onBlur) {
       this.props.onBlur(e);

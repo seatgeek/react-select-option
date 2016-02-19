@@ -35,7 +35,7 @@ var App = React.createClass({
                        onOptionHover={this.handleHover}
                        value={this.state.value}>
           {staticData.map(d => {
-            return <Select.Option value={d.value} text={d.text}>
+            return <Select.Option value={d.value} text={d.text} key={d.value}>
               {hover => {
                 console.log('a function call was made')
                 return d.text + (hover ? '!' : '');

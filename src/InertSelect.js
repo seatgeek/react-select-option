@@ -35,8 +35,7 @@ const InertSelect = React.createClass({
         isSelected: this.props.selectedIndex === i,
         onMouseOver: this.props.onHoverIndex.bind(null, i, c.props.value),
         onMouseDown: this.props.onActiveIndex.bind(null, i, c.props.value),
-        onMouseUp: this.props.onSelectIndex.bind(null, i, c.props.value),
-        onClick: this.props.onHoverIndex.bind(null, i, c.props.value)
+        onMouseUp: this.props.onSelectIndex.bind(null, i, c.props.value)
       });
     });
   },
