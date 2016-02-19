@@ -35,7 +35,7 @@ const Select = React.createClass({
     return {
       onOptionHover: () => {},
       onOptionActive: () => {},
-      onChange: () => {},
+      onChange: () => {}
     };
   },
 
