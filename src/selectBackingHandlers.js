@@ -72,18 +72,24 @@ export default {
    custom menu instead..
    */
   handleBackingSelectKeyDown(e) {
-    if (e.keyCode !== KEY_TAB) {
-      e.preventDefault();
-    } else {
+    // What other keys do we need to allow through?
+    if (e.keyCode === KEY_TAB) {
+      this.setState({
+        isFocused: false
+      });
+      return;
+    } else if (e.metaKey) {
       return;
     }
+
+    e.preventDefault();
 
     var newStateObject = {};
     var numberChildren = React.Children.count(this.props.children);
 
     if (e.keyCode === KEY_UP || e.keyCode === KEY_DOWN) {
       newStateObject.isExpanded = true;
-    } else if (e.keyCode === KEY_ENTER && this.state.hoverIndex) {
+    } else if (e.keyCode === KEY_ENTER && this.state.hoverIndex !== undefined) {
       this.props.onChange(e, this.getHoveredValue(this.state.hoverIndex));
       this.setState({
         hoverIndex: undefined,
@@ -124,17 +130,14 @@ export default {
     undesirable for two reasons.
 
       1. The expanded container will collapse on blur.
+      2. The
    */
   handleBackingSelectBlur(e: React.SyntheticFocusEvent) {
-    this.setState({
-      isFocused: false,
-      isExpanded: this.state.isInSelectingState
-    });
     if (this.props.onBlur) {
       this.props.onBlur(e);
     }
 
-    if (this.state.isInSelectingState) {
+    if (this.state.isFocused) {
       this._backingSelect.focus();
     }
   }

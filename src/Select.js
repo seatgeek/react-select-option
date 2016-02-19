@@ -1,4 +1,5 @@
 import React from 'react';
+import ReactDOM from 'react-dom';
 import Option from './Option';
 import Invariant from 'invariant';
 import InertSelect from './InertSelect';
@@ -49,11 +50,36 @@ const Select = React.createClass({
       // an option in the inert select:
       // mouseDown + backing select blur -> mouseup
       // we keep
-      isInSelectingState: false,
+      isInVirtualFocusState: false,
 
       hoverIndex: undefined,
       activeIndex: undefined
     };
+  },
+
+  /*
+    Global Blur Event Listeners
+   */
+  componentDidMount() {
+    try {
+      this.globalEventListener = window.addEventListener('click', e => {
+        var inertSelect = ReactDOM.findDOMNode(this._inertSelect);
+        if (inertSelect.contains(e.target)) {
+          return;
+        }
+
+        this.setState({
+          isFocused: false,
+          isExpanded: false
+        });
+      });
+    } catch(e) {}
+  },
+
+  componentWillUnmount() {
+    try {
+      window.removeEventListener(this.globalEventListener);
+    } catch (e) {}
   },
 
   // Returns the value of the element that is currently
@@ -88,6 +114,7 @@ const Select = React.createClass({
     return <div>
       {this.buildBackingSelect()}
       <InertSelect
+        ref={s => this._inertSelect = s}
         {...this.generateInertHandlers()}
         value={this.props.value}
         isExpanded={this.state.isExpanded}
