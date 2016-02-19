@@ -6,6 +6,7 @@ import InertSelect from './InertSelect';
 
 import selectBackingHandlers from './selectBackingHandlers';
 import selectInertHandlers from './selectInertHandlers';
+import utilityFunctions from './utilityFunctions';
 
 const hiddenSelectStyle = {
   height: 0,
@@ -86,16 +87,7 @@ const Select = React.createClass({
    */
   ...selectBackingHandlers,
   ...selectInertHandlers,
-
-  // Returns the value of the element that is currently
-  // being hovered
-  getHoveredValue(hoverIndex) {
-    return React.Children.toArray(this.props.children)[hoverIndex].props.value;
-  },
-
-  getSelectedIndex(value) {
-    return React.Children.map(this.props.children, c => c.props.value).indexOf(value);
-  },
+  ...utilityFunctions,
 
   buildBackingSelect() {
     const children = React.Children.toArray(this.props.children);
