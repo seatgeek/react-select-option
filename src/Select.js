@@ -24,6 +24,8 @@ const Select = React.createClass({
     value: React.PropTypes.string.isRequired,
     children: React.PropTypes.arrayOf(React.PropTypes.node).isRequired,
 
+    disableDropdown: React.PropTypes.bool,
+
     onOptionHover: React.PropTypes.func.isRequired,
     onOptionActive: React.PropTypes.func.isRequired,
 
@@ -121,6 +123,7 @@ const Select = React.createClass({
         value={this.props.value}
         isExpanded={this.state.isExpanded}
         isFocused={this.state.isFocused}
+        disableDropdown={this.props.disableDropdown}
 
         hoverIndex={this.state.hoverIndex}
         activeIndex={this.state.activeIndex}

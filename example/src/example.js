@@ -31,6 +31,7 @@ var App = React.createClass({
         <input/>
         <Select.Select onChange={this.handleChange}
                        onOptionHover={this.handleHover}
+                       disableDropdown
                        value={this.state.value}>
           {staticData.map(d => {
             return <Select.Option value={d.value} text={d.text} key={d.value}>

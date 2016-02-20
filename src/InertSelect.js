@@ -52,7 +52,7 @@ const InertSelect = React.createClass({
            onClick={this.props.isExpanded ? this.props.onClosed : this.props.onExpanded}>
         {this.getDisplayingChild()}
       </div>
-      {this.props.isExpanded &&
+      {this.props.isExpanded && !this.props.disableDropdown &&
         <div>
           {this.createInteractiveOptions()}
         </div>
