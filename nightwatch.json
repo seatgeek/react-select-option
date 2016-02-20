@@ -1,0 +1,104 @@
+{
+  "src_folders": ["./__browser__/tests"],
+  "custom_commands_path" : "./__browser__/custom_commands",
+  "custom_assertions_path" : "./__browser__/custom_assertions",
+  "env": "default",
+  "test_settings" : {
+    "default" : {
+      "launch_url" : "http://hub.browserstack.com",
+      "selenium_port"  : 80,
+      "selenium_host"  : "hub.browserstack.com",
+      "username": "garethtan1",
+      "access_key": "n4brCYmJn1VgtKnTwkok",
+      "silent": true,
+      "screenshots" : {
+        "enabled" : false,
+        "path" : ""
+      },
+      "desiredCapabilities": {
+        "browserName": "chrome",
+        "javascriptEnabled": true
+      }
+    },
+    "firefox" : {
+      "selenium_port"  : 4444,
+      "selenium_host"  : "localhost",
+      "desiredCapabilities": {
+        "browserName": "firefox",
+        "javascriptEnabled": true
+      }
+    },
+    "chrome" : {
+      "selenium_port"  : 4444,
+      "selenium_host"  : "localhost",
+      "desiredCapabilities": {
+        "browserName": "chrome",
+        "javascriptEnabled": true
+      }
+    },
+    "safari" : {
+      "selenium_port"  : 4444,
+      "selenium_host"  : "localhost",
+      "desiredCapabilities": {
+        "browserName": "safari",
+        "javascriptEnabled": true
+      }
+    },
+    "chrome-browserstack": {
+      "desiredCapabilities": {
+        "browser" : "Chrome",
+        "browser_version" : "43.0",
+        "os" : "Windows",
+        "os_version" : "7",
+        "acceptSslCerts": true
+      }
+    },
+    "firefox-browserstack": {
+      "desiredCapabilities": {
+        "browser" : "Firefox",
+        "browser_version" : "41.0",
+        "os" : "OS X",
+        "os_version" : "Yosemite",
+        "acceptSslCerts": true
+      }
+    },
+    "safari-browserstack": {
+      "desiredCapabilities": {
+        "browser" : "Safari",
+        "browser_version" : "8.0",
+        "os" : "OS X",
+        "os_version" : "Yosemite",
+        "acceptSslCerts": true
+      }
+    },
+    "edge-browserstack": {
+      "desiredCapabilities": {
+        "browser": "Edge",
+        "browser_version": "12.0",
+        "os": "Windows",
+        "os_version": "10",
+        "acceptSslCerts": true
+      }
+    },
+    "ie11-browserstack": {
+      "desiredCapabilities": {
+        "browser" : "IE",
+        "browser_version" : "11.0",
+        "os" : "Windows",
+        "os_version" : "7",
+        "acceptSslCerts": true,
+        "browserstack.debug": true
+      }
+    },
+    "ie10-browserstack": {
+      "desiredCapabilities": {
+        "browser" : "IE",
+        "browser_version" : "10.0",
+        "os" : "Windows",
+        "os_version" : "7",
+        "acceptSslCerts": true,
+        "browserstack.debug": true
+      }
+    }
+  }
+}

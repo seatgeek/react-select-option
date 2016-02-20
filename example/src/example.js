@@ -5,7 +5,8 @@ var Select = require('../../src');
 const staticData = [
   {value: 'A', text: 'Apple'},
   {value: 'B', text: 'Banana'},
-  {value: 'D', text: 'Bandoneon'},
+  {value: 'F', text: 'Bandoneon'},
+  {value: 'D', text: 'Durian'},
   {value: 'E', text: 'Cranberry'}
 ];
 
@@ -28,20 +29,21 @@ var App = React.createClass({
   render() {
     return (
       <div>
-        <input/>
+        <input className="input-one"/>
         <Select.Select onChange={this.handleChange}
                        onOptionHover={this.handleHover}
-                       disableDropdown
                        value={this.state.value}>
-          {staticData.map(d => {
+          {staticData.map((d, i) => {
             return <Select.Option value={d.value} text={d.text} key={d.value}>
               {(hover, active, selected) => {
-                return d.text + (hover ? 'H' : '') + (active ? '@' : '') + (selected ? '§' : '');
+                return <div className={`select-option-${i}`}>
+                  {d.text + (hover ? 'hovering' : '') + (active ? 'active' : '') + (selected ? 'selected' : '')}
+                </div>;
               }}
             </Select.Option>;
           })}
         </Select.Select>
-        <input/>
+        <input className="input-three" />
       </div>
     );
   }
