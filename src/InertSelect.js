@@ -6,6 +6,7 @@ const InertSelect = React.createClass({
   propTypes: {
     style: React.PropTypes.object,
 
+    disableDropdown: React.PropTypes.bool,
     isExpanded: React.PropTypes.bool.isRequired,
     isFocused: React.PropTypes.bool.isRequired,
     value: React.PropTypes.any,
@@ -47,16 +48,18 @@ const InertSelect = React.createClass({
   },
 
   render() {
+    var optionsStyle = this.props.isExpanded && !this.props.disableDropdown
+      ? {}
+      : {display: 'none'};
+
     return <div style={{maxWidth: 200}}>
       <div style={{border: `1px solid ${this.props.isFocused ? '#88f' : '#555'}`}}
            onClick={this.props.isExpanded ? this.props.onClosed : this.props.onExpanded}>
         {this.getDisplayingChild()}
       </div>
-      {this.props.isExpanded && !this.props.disableDropdown &&
-        <div>
-          {this.createInteractiveOptions()}
-        </div>
-      }
+      <div style={optionsStyle}>
+        {this.createInteractiveOptions()}
+      </div>
     </div>;
   }
 });
