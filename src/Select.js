@@ -31,7 +31,13 @@ const Select = React.createClass({
 
     onChange: React.PropTypes.func.isRequired,
     onFocus: React.PropTypes.func,
-    onBlur: React.PropTypes.func
+    onBlur: React.PropTypes.func,
+
+    style: React.PropTypes.shape({
+      selectContainerStyle: React.PropTypes.object,
+      optionsContainerStyle: React.PropTypes.object
+    }),
+    displayingChildRenderer: React.PropTypes.func
   },
 
   getDefaultProps() {
@@ -124,6 +130,9 @@ const Select = React.createClass({
         isExpanded={this.state.isExpanded}
         isFocused={this.state.isFocused}
         disableDropdown={this.props.disableDropdown}
+
+        displayingChildRenderer={this.props.displayingChildRenderer}
+        style={this.props.style}
 
         hoverIndex={this.state.hoverIndex}
         activeIndex={this.state.activeIndex}

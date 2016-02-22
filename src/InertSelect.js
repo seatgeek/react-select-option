@@ -4,8 +4,6 @@ import React from 'react';
 
 const InertSelect = React.createClass({
   propTypes: {
-    style: React.PropTypes.object,
-
     disableDropdown: React.PropTypes.bool,
     isExpanded: React.PropTypes.bool.isRequired,
     isFocused: React.PropTypes.bool.isRequired,
@@ -21,7 +19,20 @@ const InertSelect = React.createClass({
 
     onHoverIndex: React.PropTypes.func.isRequired,
     onActiveIndex: React.PropTypes.func.isRequired,
-    onSelectIndex: React.PropTypes.func.isRequired
+    onSelectIndex: React.PropTypes.func.isRequired,
+
+    style: React.PropTypes.shape({
+      selectContainerStyle: React.PropTypes.object,
+      optionsContainerStyle: React.PropTypes.object
+    }),
+    displayingChildRenderer: React.PropTypes.func
+  },
+
+  getDefaultProps() {
+    return {
+      displayingChildRenderer: x => x,
+      style: {}
+    };
   },
 
   /*
@@ -52,10 +63,20 @@ const InertSelect = React.createClass({
       ? {}
       : {display: 'none'};
 
-    return <div style={{maxWidth: 200}}>
-      <div style={{border: `1px solid ${this.props.isFocused ? '#88f' : '#555'}`}}
-           onClick={this.props.isExpanded ? this.props.onClosed : this.props.onExpanded}>
-        {this.getDisplayingChild()}
+    if (this.props.style.optionsContainerStyle) {
+      optionsStyle = {
+        ...optionsStyle,
+        ...this.props.style.optionsContainerStyle
+      };
+    }
+
+    var child = this.getDisplayingChild();
+
+    return <div style={this.props.style.selectContainerStyle || {}}>
+      <div onClick={this.props.isExpanded ? this.props.onClosed : this.props.onExpanded}>
+        {
+          this.props.displayingChildRenderer(child, this.props.isExpanded, this.props.isFocused)
+        }
       </div>
       <div style={optionsStyle}>
         {this.createInteractiveOptions()}

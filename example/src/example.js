@@ -26,7 +26,17 @@ var App = React.createClass({
         <input className="input-one"/>
         <Select.Select onChange={this.handleChange}
                        onOptionHover={this.handleHover}
-                       value={this.state.value}>
+                       value={this.state.value}
+                       displayingChildRenderer={
+                        (child, isExpanded, isFocused) => {
+                          return <div style={{border: `4px solid ${isFocused ? '#f88' : '#555'}`}}>{child}</div>;
+                        }
+                      }
+                       style={{
+                        optionsContainerStyle: {
+                          border: '1px solid #f0f'
+                        }
+                       }}>
           {exampleConstants.data.map((d, i) => {
             return <Select.Option value={d.value} text={d.text} key={d.value}>
               {(hover, active, selected) => {
