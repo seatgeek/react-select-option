@@ -1,16 +1,16 @@
 {
   "name": "react-select-option",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "react-select-option",
   "main": "lib/",
   "author": "Gareth Tan",
-  "homepage": "https://github.com/garetht/react-select-option",
+  "homepage": "https://github.com/seatgeek/react-select-option",
   "repository": {
     "type": "git",
-    "url": "https://github.com/garetht/react-select-option.git"
+    "url": "https://github.com/seatgeek/react-select-option.git"
   },
   "bugs": {
-    "url": "https://github.com/garetht/react-select-option/issues"
+    "url": "https://github.com/seatgeek/react-select-option/issues"
   },
   "dependencies": {
     "invariant": "^2.2.0"
