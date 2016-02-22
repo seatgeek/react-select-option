@@ -15,7 +15,6 @@ var taskConfig = {
   component: {
     name: 'ReactSelectOption',
     dependencies: [
-      'classnames',
       'react',
       'react-dom'
     ],
