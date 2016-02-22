@@ -4,7 +4,7 @@ const Option = React.createClass({
   propTypes: {
     children: React.PropTypes.oneOfType([React.PropTypes.node, React.PropTypes.func]).isRequired,
     value: React.PropTypes.string.isRequired,
-    text: React.PropTypes.string.isRequired,
+    label: React.PropTypes.string.isRequired,
 
     isHovering: React.PropTypes.bool,
     isActive: React.PropTypes.bool,

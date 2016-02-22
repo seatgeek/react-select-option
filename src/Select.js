@@ -23,6 +23,7 @@ const Select = React.createClass({
   propTypes: {
     value: React.PropTypes.string.isRequired,
     children: React.PropTypes.arrayOf(React.PropTypes.node).isRequired,
+    autoComplete: React.PropTypes.string,
 
     disableDropdown: React.PropTypes.bool,
 
@@ -107,13 +108,14 @@ const Select = React.createClass({
       // HACK: for Firefox!
       // Further reading: this most fun issue https://bugzilla.mozilla.org/show_bug.cgi?id=126379
       size="2"
+      autoComplete={this.props.autoComplete}
       value={this.props.value}>
       {
         children.map((c, i) => {
           Invariant(c.type === Option, `The Select component should
           only take Select.Option instances as children.`);
           return <option value={c.props.value} key={c.props.value} index={i}>
-            {c.props.text || c.props.value}
+            {c.props.label || c.props.value}
           </option>;
         })
       }

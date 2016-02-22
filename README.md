@@ -1,12 +1,17 @@
 # react-select-option
 
+## Usage
+
+Importing this library yields an object with two keys, `Select` and `Option`, roughly corresponding to the HTML `<select>` and `<option>`.
+
+
 ## Styling
 
 Styling of this component can be done through Javascript or CSS. However, Javascript styles are currently required to style the select container as well as the options container style.
 
-Much of the rendering is done through a series of functional delegates.
+Much of the rendering is done through a series of functional rendering delegates, which are functions that the Select component calls every time it needs to know how to render parts of the Select, such as each `<Option>`. These delegates are provided with arguments passed in to it by the component indicating the current state of the component.
 
-The delegate for the `<select>` displaying child should be provided as a function to the `displayingChildRenderer` prop of the top-level select. This is provided three arguments, in this order:
+The delegate for the `<select>` displaying child should be provided as a function to the `displayingChildRenderer` prop of the Select. This is provided three arguments, in this order:
 
 `child`, the `Option` node to render
 `isExpanded`, whether the component is in an expanded state
@@ -38,10 +43,10 @@ Currently, the `displayingChildRenderer` is the most inefficient of the bunch, a
                 }
                }}>
   {exampleConstants.data.map((d, i) => {
-    return <Select.Option value={d.value} text={d.text} key={d.value}>
+    return <Select.Option value={d.value} label={d.label} key={d.value}>
       {(hover, active, selected) => {
         return <div className={`${exampleConstants.SELECT_CLASS_PREFIX}-${i}${selected ? '-selected' : ''}`}>
-          {d.text +
+          {d.label +
           (hover ? exampleConstants.HOVERING_SYMBOL : '') +
           (active ? exampleConstants.ACTIVE_SYMBOL : '') +
           (selected ? exampleConstants.SELECTED_SYMBOL : '')}

@@ -33,16 +33,16 @@ var App = React.createClass({
                         }
                       }
                        style={{
-                        optionsContainerStyle: {
-                          border: '1px solid #f0f'
-                        }
+                         optionsContainerStyle: {
+                           border: '1px solid #f0f'
+                         }
                        }}>
           {exampleConstants.data.map((d, i) => {
-            return <Select.Option value={d.value} text={d.text} key={d.value}>
+            return <Select.Option value={d.value} label={d.label} key={d.value}>
               {(hover, active, selected) => {
                 console.log('this function is being called');
                 return <div className={`${exampleConstants.SELECT_CLASS_PREFIX}-${i}${selected ? '-selected' : ''}`}>
-                  {d.text +
+                  {d.label +
                   (hover ? exampleConstants.HOVERING_SYMBOL : '') +
                   (active ? exampleConstants.ACTIVE_SYMBOL : '') +
                   (selected ? exampleConstants.SELECTED_SYMBOL : '')}
