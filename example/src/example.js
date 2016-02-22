@@ -1,14 +1,7 @@
 var React = require('react');
 var ReactDOM = require('react-dom');
 var Select = require('../../src');
-
-const staticData = [
-  {value: 'A', text: 'Apple'},
-  {value: 'B', text: 'Banana'},
-  {value: 'F', text: 'Bandoneon'},
-  {value: 'D', text: 'Durian'},
-  {value: 'E', text: 'Cranberry'}
-];
+var exampleConstants = require('./exampleConstants');
 
 var App = React.createClass({
   getInitialState() {
@@ -29,16 +22,20 @@ var App = React.createClass({
   render() {
     return (
       <div>
+        <div className="area-for-global-focus-loss" style={{width: 10, height: 10}}/>
         <input className="input-one"/>
         <Select.Select onChange={this.handleChange}
                        onOptionHover={this.handleHover}
                        value={this.state.value}>
-          {staticData.map((d, i) => {
+          {exampleConstants.data.map((d, i) => {
             return <Select.Option value={d.value} text={d.text} key={d.value}>
               {(hover, active, selected) => {
                 console.log('this function is being called');
-                return <div className={`select-option-${i}`}>
-                  {d.text + (hover ? 'hovering' : '') + (active ? 'active' : '') + (selected ? 'selected' : '')}
+                return <div className={`${exampleConstants.SELECT_CLASS_PREFIX}-${i}${selected ? '-selected' : ''}`}>
+                  {d.text +
+                  (hover ? exampleConstants.HOVERING_SYMBOL : '') +
+                  (active ? exampleConstants.ACTIVE_SYMBOL : '') +
+                  (selected ? exampleConstants.SELECTED_SYMBOL : '')}
                 </div>;
               }}
             </Select.Option>;
