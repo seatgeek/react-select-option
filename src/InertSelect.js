@@ -7,7 +7,7 @@ const InertSelect = React.createClass({
     disableDropdown: React.PropTypes.bool,
     isExpanded: React.PropTypes.bool.isRequired,
     isFocused: React.PropTypes.bool.isRequired,
-    value: React.PropTypes.any,
+    value: React.PropTypes.oneOfType([React.PropTypes.string, React.PropTypes.number]).isRequired,
     children: React.PropTypes.arrayOf(React.PropTypes.node),
 
     onExpanded: React.PropTypes.func,

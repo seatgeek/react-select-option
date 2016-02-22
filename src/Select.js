@@ -21,7 +21,7 @@ const hiddenSelectStyle = {
 
 const Select = React.createClass({
   propTypes: {
-    value: React.PropTypes.string.isRequired,
+    value: React.PropTypes.oneOfType([React.PropTypes.string, React.PropTypes.number]).isRequired,
     children: React.PropTypes.arrayOf(React.PropTypes.node).isRequired,
     autoComplete: React.PropTypes.string,
 

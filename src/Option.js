@@ -3,7 +3,7 @@ import React from 'react';
 const Option = React.createClass({
   propTypes: {
     children: React.PropTypes.oneOfType([React.PropTypes.node, React.PropTypes.func]).isRequired,
-    value: React.PropTypes.string.isRequired,
+    value: React.PropTypes.oneOfType([React.PropTypes.string, React.PropTypes.number]).isRequired,
     label: React.PropTypes.string.isRequired,
 
     isHovering: React.PropTypes.bool,
