@@ -143,7 +143,7 @@ export default {
       this.props.onBlur(e);
     }
 
-    if (this.state.isFocused) {
+    if (this.state.isFocused && !this.props.useNative) {
       this._backingSelect.focus();
     }
   }

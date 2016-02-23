@@ -26,6 +26,7 @@ const Select = React.createClass({
     autoComplete: React.PropTypes.string,
 
     disableDropdown: React.PropTypes.bool,
+    useNative: React.PropTypes.bool,
 
     onOptionHover: React.PropTypes.func.isRequired,
     onOptionActive: React.PropTypes.func.isRequired,
@@ -69,9 +70,14 @@ const Select = React.createClass({
     Global Blur Event Listeners
    */
   componentDidMount() {
+    if (this.props.useNative) {
+      return;
+    }
+
     try {
       this.globalEventListener = window.addEventListener('click', e => {
         var inertSelect = ReactDOM.findDOMNode(this._inertSelect);
+
         if (inertSelect.contains(e.target)) {
           return;
         }
@@ -103,11 +109,11 @@ const Select = React.createClass({
   buildBackingSelect() {
     const children = React.Children.toArray(this.props.children);
     return <select {...this.generateBackingHandlers()}
-      style={hiddenSelectStyle}
+      style={this.props.useNative ? {} : hiddenSelectStyle}
       ref={s => (this._backingSelect = s)}
       // HACK: for Firefox!
       // Further reading: this most fun issue https://bugzilla.mozilla.org/show_bug.cgi?id=126379
-      size="2"
+      size={this.props.useNative ? "1" : "2"}
       autoComplete={this.props.autoComplete}
       value={this.props.value}>
       {
@@ -122,26 +128,30 @@ const Select = React.createClass({
     </select>;
   },
 
+  renderInertSelect() {
+    return <InertSelect
+      ref={s => (this._inertSelect = s)}
+      {...this.generateInertHandlers()}
+      value={this.props.value}
+      isExpanded={this.state.isExpanded}
+      isFocused={this.state.isFocused}
+      disableDropdown={this.props.disableDropdown}
+
+      displayingChildRenderer={this.props.displayingChildRenderer}
+      style={this.props.style}
+
+      hoverIndex={this.state.hoverIndex}
+      activeIndex={this.state.activeIndex}
+      selectedIndex={this.getSelectedIndex(this.props.value)}
+    >
+      {this.props.children}
+    </InertSelect>;
+  },
+
   render() {
     return <div>
       {this.buildBackingSelect()}
-      <InertSelect
-        ref={s => (this._inertSelect = s)}
-        {...this.generateInertHandlers()}
-        value={this.props.value}
-        isExpanded={this.state.isExpanded}
-        isFocused={this.state.isFocused}
-        disableDropdown={this.props.disableDropdown}
-
-        displayingChildRenderer={this.props.displayingChildRenderer}
-        style={this.props.style}
-
-        hoverIndex={this.state.hoverIndex}
-        activeIndex={this.state.activeIndex}
-        selectedIndex={this.getSelectedIndex(this.props.value)}
-      >
-        {this.props.children}
-      </InertSelect>
+      {!this.props.useNative && this.renderInertSelect()}
     </div>;
   }
 });
