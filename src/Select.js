@@ -36,6 +36,7 @@ const Select = React.createClass({
     onBlur: React.PropTypes.func,
 
     style: React.PropTypes.shape({
+      containerStyle: React.PropTypes.object,
       selectContainerStyle: React.PropTypes.object,
       optionsContainerStyle: React.PropTypes.object
     }),
@@ -46,7 +47,8 @@ const Select = React.createClass({
     return {
       onOptionHover: () => {},
       onOptionActive: () => {},
-      onChange: () => {}
+      onChange: () => {},
+      style: {}
     };
   },
 
@@ -149,7 +151,7 @@ const Select = React.createClass({
   },
 
   render() {
-    return <div>
+    return <div style={this.props.style.containerStyle || {}}>
       {this.buildBackingSelect()}
       {!this.props.useNative && this.renderInertSelect()}
     </div>;
