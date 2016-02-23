@@ -9,6 +9,7 @@ const Option = React.createClass({
     isHovering: React.PropTypes.bool,
     isActive: React.PropTypes.bool,
     isSelected: React.PropTypes.bool,
+    isDisplaying: React.PropTypes.bool,
 
     onMouseOver: React.PropTypes.func.isRequired,
     onMouseUp: React.PropTypes.func.isRequired,
@@ -32,7 +33,7 @@ const Option = React.createClass({
   getRenderable() {
     var children = this.props.children;
     return typeof children === 'function'
-      ? children(this.props.isHovering, this.props.isActive, this.props.isSelected)
+      ? children(this.props.isHovering, this.props.isActive, this.props.isSelected, this.props.isDisplaying)
       : children;
   },
 

@@ -53,8 +53,16 @@ const InertSelect = React.createClass({
   },
 
   getDisplayingChild(): React.Element<any, any, any> {
-    return React.Children.toArray(this.props.children).filter(c => {
+    var child = React.Children.toArray(this.props.children).filter(c => {
       return c.props.value === this.props.value;
+    })[0];
+
+    if (!child) {
+      return null;
+    }
+
+    return React.cloneElement(child, {
+      isDisplaying: true
     });
   },
 
