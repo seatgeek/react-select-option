@@ -26,9 +26,18 @@ export default {
   },
 
   handleBackingSelectChange(e) {
-    this.setState({
+    var newState = {
       isExpanded: false
-    });
+    };
+
+    // When we do not show the dropdown (i.e. on iPad)
+    // we do not retain focus so that the native dropdown
+    // menu does not remain open.
+    if (this.props.disableDropdown) {
+      newState.isFocused = false;
+    }
+
+    this.setState(newState);
     if (this.props.onChange) {
       this.props.onChange(e, e.target.value);
     }

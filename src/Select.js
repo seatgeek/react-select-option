@@ -80,6 +80,10 @@ const Select = React.createClass({
       this.globalEventListener = window.addEventListener('click', e => {
         var inertSelect = ReactDOM.findDOMNode(this._inertSelect);
 
+        if (!inertSelect) {
+          return;
+        }
+
         if (inertSelect.contains(e.target)) {
           return;
         }
