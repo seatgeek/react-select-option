@@ -57,6 +57,10 @@ Currently, the `displayingChildRenderer` is the most inefficient of the bunch, a
 </Select.Select>
 ```
 
+## Releasing
+
+To release, run `npm run build`, `npm version <type>`, and then `npm publish ./`.
+
 ## Tests
 
 To run tests, use `npm run nightwatch`. You should have a Selenium server running and the example running on port 8000, which you can do by running `npm run start`.
