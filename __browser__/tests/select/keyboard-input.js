@@ -38,7 +38,7 @@ module.exports = {
 
     browser.sendKeys('select', browser.Keys.ARROW_UP);
     browser.expect.element(prefix + '-0').to.be.visible;
-    browser.expect.element(prefix + '-0').text.to.equal(exampleConstants.data[0].text);
+    browser.expect.element(prefix + '-0').text.to.equal(exampleConstants.data[0].label);
     browser.expect.element(prefix + '-1').to.be.visible;
     browser.expect.element(prefix + '-2').to.be.visible;
     browser.expect.element(prefix + '-3').to.be.visible;

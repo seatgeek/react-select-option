@@ -112,7 +112,7 @@ module.exports = {
 
     browser.click(prefix + '-3'); // perform the selection
 
-    browser.expect.element(prefix + '-3').text.to.contain(exampleConstants.data[3].text);
+    browser.expect.element(prefix + '-3').text.to.contain(exampleConstants.data[3].label);
     browser.expect.element(prefix + '-3-selected').to.be.present;
     browser.expect.element(prefix + '-0').not.to.be.visible;
     browser.expect.element(prefix + '-1').not.to.be.visible;

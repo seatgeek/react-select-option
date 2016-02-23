@@ -30,7 +30,6 @@ var App = React.createClass({
         <Select.Select onChange={this.handleChange}
                        onOptionHover={this.handleHover}
                        value={this.state.value}
-                       useNative
                        displayingChildRenderer={
                         (child, isExpanded, isFocused) => {
                           return <div style={{border: `4px solid ${isFocused ? '#f88' : '#555'}`}}>{child}</div>;
