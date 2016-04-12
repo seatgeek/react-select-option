@@ -27,7 +27,9 @@ const Option = React.createClass({
   shouldComponentUpdate(nextProps) {
     return this.props.isHovering !== nextProps.isHovering ||
         this.props.isActive !== nextProps.isActive ||
-        this.props.isSelected !== nextProps.isSelected;
+        this.props.isSelected !== nextProps.isSelected ||
+        this.props.isDisplaying ||
+        this.props.isDisplaying !== nextProps.isDisplaying;
   },
 
   getRenderable() {
