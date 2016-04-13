@@ -25,6 +25,10 @@ const Select = React.createClass({
     children: React.PropTypes.arrayOf(React.PropTypes.node).isRequired,
     autoComplete: React.PropTypes.string,
 
+    // The name is an unimportant string we attach to the
+    // <select> for purposes of testing.
+    name: React.PropTypes.string,
+
     disableDropdown: React.PropTypes.bool,
     useNative: React.PropTypes.bool,
 
@@ -119,8 +123,9 @@ const Select = React.createClass({
       ref={s => (this._backingSelect = s)}
       // HACK: for Firefox!
       // Further reading: this most fun issue https://bugzilla.mozilla.org/show_bug.cgi?id=126379
-      size={this.props.useNative ? "1" : "2"}
+      size={this.props.useNative ? '1' : '2'}
       autoComplete={this.props.autoComplete}
+      name={this.props.name}
       value={this.props.value}>
       {
         children.map((c, i) => {
