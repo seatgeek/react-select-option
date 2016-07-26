@@ -30,7 +30,7 @@
     "react-dom": "^0.14.0"
   },
   "peerDependencies": {
-    "react": "^0.14.0"
+    "react": "^15.0.0"
   },
   "scripts": {
     "build": "gulp clean && NODE_ENV=production gulp build",
