@@ -98,6 +98,13 @@ const Select = React.createClass({
           activeIndex: undefined,
           hoverIndex: undefined
         });
+
+        // On Chrome, the click event does not appear to get transmitted,
+        // causing the focus to still stay on the backing select. This
+        // makes future keystrokes get transmitted to the backing select.
+        if (e.target.focus) {
+          e.target.focus();
+        }
       });
     } catch (e) {}
   },
