@@ -109,12 +109,32 @@ const Select = React.createClass({
         }
       });
 
-      this.escapeEventListener = window.addEventListener('keyup', e => {
+      // An escape keypress closes the dropdown but does not make the
+      // select lose focus.
+      this.keyupEventListener = window.addEventListener('keyup', e => {
         if (e.keyCode === 27) {
           this.setState({
             isExpanded: false,
             activeIndex: undefined,
             hoverIndex: undefined
+          });
+        }
+      });
+
+      // A tab keypress while the menu is expanded does nothing at all. The
+      // focus and selection remain unchanged.
+      // Note that this is the behavior in Chrome and Safari. In Firefox a tab
+      // while the menu is focused immediately moves focus to then next tabindex.
+      // Firefox selects, however, behave quite differently in general. Elements
+      // are selected immediately through keyboard navigation, for one, so it makes
+      // sense for a tab to just change focus.
+      this.keydownEventListener = window.addEventListener('keydown', e => {
+        if (e.keyCode === 9 && this.state.isExpanded) {
+          e.preventDefault();
+          e.stopPropagation();
+          this._backingSelect.focus();
+          this.setState({
+            isFocused: true
           });
         }
       });
@@ -126,7 +146,10 @@ const Select = React.createClass({
       window.removeEventListener(this.globalEventListener);
     } catch (e) {}
     try {
-      window.removeEventListener(this.escapeEventListener);
+      window.removeEventListener(this.keyupEventListener);
+    } catch (e) {}
+    try {
+      window.removeEventListener(this.keydownEventListener);
     } catch (e) {}
   },
 
