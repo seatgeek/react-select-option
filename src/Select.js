@@ -108,12 +108,25 @@ const Select = React.createClass({
           e.target.focus();
         }
       });
+
+      this.escapeEventListener = window.addEventListener('keyup', e => {
+        if (e.keyCode === 27) {
+          this.setState({
+            isExpanded: false,
+            activeIndex: undefined,
+            hoverIndex: undefined
+          });
+        }
+      });
     } catch (e) {}
   },
 
   componentWillUnmount() {
     try {
       window.removeEventListener(this.globalEventListener);
+    } catch (e) {}
+    try {
+      window.removeEventListener(this.escapeEventListener);
     } catch (e) {}
   },
 
