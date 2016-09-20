@@ -9,8 +9,10 @@ import selectInertHandlers from './selectInertHandlers';
 import utilityFunctions from './utilityFunctions';
 
 const hiddenSelectStyle = {
-  height: 0,
-  width: 0,
+  // HACK: for Safari. If the hidden select has
+  // size 0 then it is skipped in the taborder.
+  height: 0.1,
+  width: 0.1,
   margin: 0,
   border: 0,
   padding: 0,
