@@ -8,6 +8,8 @@ import selectBackingHandlers from './selectBackingHandlers';
 import selectInertHandlers from './selectInertHandlers';
 import utilityFunctions from './utilityFunctions';
 
+const ESCAPE_KEY = 27;
+const TAB_KEY = 9;
 const hiddenSelectStyle = {
   // HACK: for Safari. If the hidden select has
   // size 0 then it is skipped in the taborder.
@@ -112,7 +114,7 @@ const Select = React.createClass({
       // An escape keypress closes the dropdown but does not make the
       // select lose focus.
       this.keyupEventListener = window.addEventListener('keyup', e => {
-        if (e.keyCode === 27) {
+        if (e.keyCode === ESCAPE_KEY) {
           this.setState({
             isExpanded: false,
             activeIndex: undefined,
@@ -129,7 +131,7 @@ const Select = React.createClass({
       // are selected immediately through keyboard navigation, for one, so it makes
       // sense for a tab to just change focus.
       this.keydownEventListener = window.addEventListener('keydown', e => {
-        if (e.keyCode === 9 && this.state.isExpanded) {
+        if (e.keyCode === TAB_KEY && this.state.isExpanded) {
           e.preventDefault();
           e.stopPropagation();
           this._backingSelect.focus();
