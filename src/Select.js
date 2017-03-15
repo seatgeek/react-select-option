@@ -197,6 +197,7 @@ const Select = React.createClass({
       isFocused={this.state.isFocused}
       disableDropdown={this.props.disableDropdown}
       containerClassName={this.props.containerClassName}
+      optionsContainerClassName={this.props.optionsContainerClassName}
 
       displayingChildRenderer={this.props.displayingChildRenderer}
       style={this.props.style}
