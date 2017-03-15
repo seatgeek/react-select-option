@@ -28,6 +28,8 @@ const Select = React.createClass({
     value: React.PropTypes.oneOfType([React.PropTypes.string, React.PropTypes.number]).isRequired,
     children: React.PropTypes.arrayOf(React.PropTypes.node).isRequired,
     autoComplete: React.PropTypes.string,
+    containerClassName: React.PropTypes.string,
+    optionsContainerClassName: React.PropTypes.string,
 
     // The name is an unimportant string we attach to the
     // <select> for purposes of testing.
@@ -194,6 +196,7 @@ const Select = React.createClass({
       isExpanded={this.state.isExpanded}
       isFocused={this.state.isFocused}
       disableDropdown={this.props.disableDropdown}
+      containerClassName={this.props.containerClassName}
 
       displayingChildRenderer={this.props.displayingChildRenderer}
       style={this.props.style}
