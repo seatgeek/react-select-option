@@ -9,6 +9,8 @@ const InertSelect = React.createClass({
     isFocused: React.PropTypes.bool.isRequired,
     value: React.PropTypes.oneOfType([React.PropTypes.string, React.PropTypes.number]).isRequired,
     children: React.PropTypes.arrayOf(React.PropTypes.node),
+    containerClassName: React.PropTypes.string,
+    optionsContainerClassName: React.PropTypes.string,
 
     onExpanded: React.PropTypes.func,
     onClosed: React.PropTypes.func,
@@ -80,13 +82,13 @@ const InertSelect = React.createClass({
 
     var child = this.getDisplayingChild();
 
-    return <div style={this.props.style.selectContainerStyle || {}}>
+    return <div className={this.props.containerClassName} style={this.props.style.selectContainerStyle || {}}>
       <div onClick={this.props.isExpanded ? this.props.onClosed : this.props.onExpanded}>
         {
           this.props.displayingChildRenderer(child, this.props.isExpanded, this.props.isFocused)
         }
       </div>
-      <div style={optionsStyle}>
+      <div style={optionsStyle} className={this.props.optionsContainerClassName}>
         {this.createInteractiveOptions()}
       </div>
     </div>;
