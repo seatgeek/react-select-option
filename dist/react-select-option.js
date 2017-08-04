@@ -468,7 +468,7 @@ var Select = (0, _createReactClass2['default'])(_extends({
         (0, _invariant2['default'])(c.type === _Option2['default'], 'The Select component should\n          only take Select.Option instances as children.');
         return _react2['default'].createElement(
           'option',
-          { value: c.props.value, key: c.props.value, index: i },
+          { value: c.props.value, key: c.props.value },
           c.props.label || c.props.value
         );
       })
