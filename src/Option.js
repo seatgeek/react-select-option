@@ -1,19 +1,21 @@
 import React from 'react';
+import PropTypes from 'prop-types';
+import createReactClass from 'create-react-class';
 
-const Option = React.createClass({
+const Option = createReactClass({
   propTypes: {
-    children: React.PropTypes.oneOfType([React.PropTypes.node, React.PropTypes.func]).isRequired,
-    value: React.PropTypes.oneOfType([React.PropTypes.string, React.PropTypes.number]).isRequired,
-    label: React.PropTypes.oneOfType([React.PropTypes.string, React.PropTypes.number]).isRequired,
+    children: PropTypes.oneOfType([PropTypes.node, PropTypes.func]).isRequired,
+    value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
+    label: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
 
-    isHovering: React.PropTypes.bool,
-    isActive: React.PropTypes.bool,
-    isSelected: React.PropTypes.bool,
-    isDisplaying: React.PropTypes.bool,
+    isHovering: PropTypes.bool,
+    isActive: PropTypes.bool,
+    isSelected: PropTypes.bool,
+    isDisplaying: PropTypes.bool,
 
-    onMouseOver: React.PropTypes.func.isRequired,
-    onMouseUp: React.PropTypes.func.isRequired,
-    onMouseDown: React.PropTypes.func.isRequired
+    onMouseOver: PropTypes.func.isRequired,
+    onMouseUp: PropTypes.func.isRequired,
+    onMouseDown: PropTypes.func.isRequired
   },
 
   getDefaultProps() {

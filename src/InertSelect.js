@@ -1,33 +1,35 @@
 /* @flow */
 
 import React from 'react';
+import PropTypes from 'prop-types';
+import createReactClass from 'create-react-class';
 
-const InertSelect = React.createClass({
+const InertSelect = createReactClass({
   propTypes: {
-    disableDropdown: React.PropTypes.bool,
-    isExpanded: React.PropTypes.bool.isRequired,
-    isFocused: React.PropTypes.bool.isRequired,
-    value: React.PropTypes.oneOfType([React.PropTypes.string, React.PropTypes.number]).isRequired,
-    children: React.PropTypes.arrayOf(React.PropTypes.node),
-    containerClassName: React.PropTypes.string,
-    optionsContainerClassName: React.PropTypes.string,
+    disableDropdown: PropTypes.bool,
+    isExpanded: PropTypes.bool.isRequired,
+    isFocused: PropTypes.bool.isRequired,
+    value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
+    children: PropTypes.arrayOf(PropTypes.node),
+    containerClassName: PropTypes.string,
+    optionsContainerClassName: PropTypes.string,
 
-    onExpanded: React.PropTypes.func,
-    onClosed: React.PropTypes.func,
+    onExpanded: PropTypes.func,
+    onClosed: PropTypes.func,
 
-    hoverIndex: React.PropTypes.number,
-    activeIndex: React.PropTypes.number,
-    selectedIndex: React.PropTypes.number,
+    hoverIndex: PropTypes.number,
+    activeIndex: PropTypes.number,
+    selectedIndex: PropTypes.number,
 
-    onHoverIndex: React.PropTypes.func.isRequired,
-    onActiveIndex: React.PropTypes.func.isRequired,
-    onSelectIndex: React.PropTypes.func.isRequired,
+    onHoverIndex: PropTypes.func.isRequired,
+    onActiveIndex: PropTypes.func.isRequired,
+    onSelectIndex: PropTypes.func.isRequired,
 
-    style: React.PropTypes.shape({
-      selectContainerStyle: React.PropTypes.object,
-      optionsContainerStyle: React.PropTypes.object
+    style: PropTypes.shape({
+      selectContainerStyle: PropTypes.object,
+      optionsContainerStyle: PropTypes.object
     }),
-    displayingChildRenderer: React.PropTypes.func
+    displayingChildRenderer: PropTypes.func
   },
 
   getDefaultProps() {
