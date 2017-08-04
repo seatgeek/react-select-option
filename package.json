@@ -36,6 +36,7 @@
     "prop-types": "^15.5.10",
     "react": "^15.6.1"
   },
+  "browserify-shim": {},
   "scripts": {
     "build": "gulp clean && NODE_ENV=production gulp build",
     "examples": "gulp dev:server",
