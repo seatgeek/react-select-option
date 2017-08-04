@@ -13,10 +13,12 @@ var initGulpTasks = require('react-component-gulp-tasks');
 var taskConfig = {
 
   component: {
-    name: 'ReactSelectOption',
+    name: 'index',
     dependencies: [
       'react',
-      'react-dom'
+      'react-dom',
+      'prop-types',
+      'create-react-class'
     ],
     lib: 'lib'
   },

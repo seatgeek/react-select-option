@@ -1,5 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import PropTypes from 'prop-types';
+import createReactClass from 'create-react-class';
 import Option from './Option';
 import Invariant from 'invariant';
 import InertSelect from './InertSelect';
@@ -23,34 +25,34 @@ const hiddenSelectStyle = {
   position: 'absolute'
 };
 
-const Select = React.createClass({
+const Select = createReactClass({
   propTypes: {
-    value: React.PropTypes.oneOfType([React.PropTypes.string, React.PropTypes.number]).isRequired,
-    children: React.PropTypes.arrayOf(React.PropTypes.node).isRequired,
-    autoComplete: React.PropTypes.string,
-    containerClassName: React.PropTypes.string,
-    optionsContainerClassName: React.PropTypes.string,
+    value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
+    children: PropTypes.arrayOf(PropTypes.node).isRequired,
+    autoComplete: PropTypes.string,
+    containerClassName: PropTypes.string,
+    optionsContainerClassName: PropTypes.string,
 
     // The name is an unimportant string we attach to the
     // <select> for purposes of testing.
-    name: React.PropTypes.string,
+    name: PropTypes.string,
 
-    disableDropdown: React.PropTypes.bool,
-    useNative: React.PropTypes.bool,
+    disableDropdown: PropTypes.bool,
+    useNative: PropTypes.bool,
 
-    onOptionHover: React.PropTypes.func.isRequired,
-    onOptionActive: React.PropTypes.func.isRequired,
+    onOptionHover: PropTypes.func.isRequired,
+    onOptionActive: PropTypes.func.isRequired,
 
-    onChange: React.PropTypes.func.isRequired,
-    onFocus: React.PropTypes.func,
-    onBlur: React.PropTypes.func,
+    onChange: PropTypes.func.isRequired,
+    onFocus: PropTypes.func,
+    onBlur: PropTypes.func,
 
-    style: React.PropTypes.shape({
-      containerStyle: React.PropTypes.object,
-      selectContainerStyle: React.PropTypes.object,
-      optionsContainerStyle: React.PropTypes.object
+    style: PropTypes.shape({
+      containerStyle: PropTypes.object,
+      selectContainerStyle: PropTypes.object,
+      optionsContainerStyle: PropTypes.object
     }),
-    displayingChildRenderer: React.PropTypes.func
+    displayingChildRenderer: PropTypes.func
   },
 
   getDefaultProps() {
