@@ -182,7 +182,7 @@ const Select = createReactClass({
         children.map((c, i) => {
           Invariant(c.type === Option, `The Select component should
           only take Select.Option instances as children.`);
-          return <option value={c.props.value} key={c.props.value} index={i}>
+          return <option value={c.props.value} key={c.props.value}>
             {c.props.label || c.props.value}
           </option>;
         })
