@@ -1,6 +1,6 @@
 /* @flow */
 
-import React, { type Element } from 'react';
+import * as React from 'react';
 import PropTypes from 'prop-types';
 import createReactClass from 'create-react-class';
 
@@ -42,7 +42,7 @@ const InertSelect = createReactClass({
   /*
     This attaches handlers to each prop.
    */
-  createInteractiveOptions(): Array<Element<any>> {
+  createInteractiveOptions(): Array<React.Element<any>> {
     // Can we cache this?
     return React.Children.map(this.props.children, (c, i) => {
       return React.cloneElement(c, {
@@ -56,7 +56,7 @@ const InertSelect = createReactClass({
     });
   },
 
-  getDisplayingChild(): ?Element<any> {
+  getDisplayingChild(): ?React.Element<any> {
     var child = React.Children.toArray(this.props.children).filter(c => {
       return c.props.value === this.props.value;
     })[0];
