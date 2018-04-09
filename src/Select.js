@@ -169,54 +169,63 @@ const Select = createReactClass({
 
   buildBackingSelect() {
     const children = React.Children.toArray(this.props.children);
-    return <select {...this.generateBackingHandlers()}
-      style={this.props.useNative ? {} : hiddenSelectStyle}
-      ref={s => (this._backingSelect = s)}
-      // HACK: for Firefox!
-      // Further reading: this most fun issue https://bugzilla.mozilla.org/show_bug.cgi?id=126379
-      size={this.props.useNative ? '1' : '2'}
-      autoComplete={this.props.autoComplete}
-      name={this.props.name}
-      value={this.props.value}>
-      {
-        children.map((c, i) => {
-          Invariant(c.type === Option, `The Select component should
-          only take Select.Option instances as children.`);
-          return <option value={c.props.value} key={c.props.value}>
-            {c.props.label || c.props.value}
-          </option>;
-        })
-      }
-    </select>;
+    return (
+      <select
+        {...this.generateBackingHandlers()}
+        style={this.props.useNative ? {} : hiddenSelectStyle}
+        ref={s => (this._backingSelect = s)}
+        // HACK: for Firefox!
+        // Further reading: this most fun issue https://bugzilla.mozilla.org/show_bug.cgi?id=126379
+        size={this.props.useNative ? '1' : '2'}
+        autoComplete={this.props.autoComplete}
+        name={this.props.name}
+        value={this.props.value}
+      >
+        {children.map((c, i) => {
+          Invariant(
+            c.type === Option,
+            `The Select component should
+          only take Select.Option instances as children.`
+          );
+          return (
+            <option value={c.props.value} key={c.props.value}>
+              {c.props.label || c.props.value}
+            </option>
+          );
+        })}
+      </select>
+    );
   },
 
   renderInertSelect() {
-    return <InertSelect
-      ref={s => (this._inertSelect = s)}
-      {...this.generateInertHandlers()}
-      value={this.props.value}
-      isExpanded={this.state.isExpanded}
-      isFocused={this.state.isFocused}
-      disableDropdown={this.props.disableDropdown}
-      containerClassName={this.props.containerClassName}
-      optionsContainerClassName={this.props.optionsContainerClassName}
-
-      displayingChildRenderer={this.props.displayingChildRenderer}
-      style={this.props.style}
-
-      hoverIndex={this.state.hoverIndex}
-      activeIndex={this.state.activeIndex}
-      selectedIndex={this.getSelectedIndex(this.props.value)}
-    >
-      {this.props.children}
-    </InertSelect>;
+    return (
+      <InertSelect
+        ref={s => (this._inertSelect = s)}
+        {...this.generateInertHandlers()}
+        value={this.props.value}
+        isExpanded={this.state.isExpanded}
+        isFocused={this.state.isFocused}
+        disableDropdown={this.props.disableDropdown}
+        containerClassName={this.props.containerClassName}
+        optionsContainerClassName={this.props.optionsContainerClassName}
+        displayingChildRenderer={this.props.displayingChildRenderer}
+        style={this.props.style}
+        hoverIndex={this.state.hoverIndex}
+        activeIndex={this.state.activeIndex}
+        selectedIndex={this.getSelectedIndex(this.props.value)}
+      >
+        {this.props.children}
+      </InertSelect>
+    );
   },
 
   render() {
-    return <div style={this.props.style.containerStyle || {}}>
-      {this.buildBackingSelect()}
-      {!this.props.useNative && this.renderInertSelect()}
-    </div>;
+    return (
+      <div style={this.props.style.containerStyle || {}}>
+        {this.buildBackingSelect()}
+        {!this.props.useNative && this.renderInertSelect()}
+      </div>
+    );
   }
 });
 

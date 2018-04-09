@@ -8,6 +8,8 @@ export default {
   },
 
   getSelectedIndex(value) {
-    return React.Children.map(this.props.children, c => c.props.value).indexOf(value);
+    return React.Children.map(this.props.children, c => c.props.value).indexOf(
+      value
+    );
   }
 };

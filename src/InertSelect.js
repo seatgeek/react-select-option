@@ -71,9 +71,10 @@ const InertSelect = createReactClass({
   },
 
   render() {
-    var optionsStyle = this.props.isExpanded && !this.props.disableDropdown
-      ? {}
-      : {display: 'none'};
+    var optionsStyle =
+      this.props.isExpanded && !this.props.disableDropdown
+        ? {}
+        : { display: 'none' };
 
     if (this.props.style.optionsContainerStyle) {
       optionsStyle = {
@@ -84,16 +85,30 @@ const InertSelect = createReactClass({
 
     var child = this.getDisplayingChild();
 
-    return <div className={this.props.containerClassName} style={this.props.style.selectContainerStyle || {}}>
-      <div onClick={this.props.isExpanded ? this.props.onClosed : this.props.onExpanded}>
-        {
-          this.props.displayingChildRenderer(child, this.props.isExpanded, this.props.isFocused)
-        }
+    return (
+      <div
+        className={this.props.containerClassName}
+        style={this.props.style.selectContainerStyle || {}}
+      >
+        <div
+          onClick={
+            this.props.isExpanded ? this.props.onClosed : this.props.onExpanded
+          }
+        >
+          {this.props.displayingChildRenderer(
+            child,
+            this.props.isExpanded,
+            this.props.isFocused
+          )}
+        </div>
+        <div
+          style={optionsStyle}
+          className={this.props.optionsContainerClassName}
+        >
+          {this.createInteractiveOptions()}
+        </div>
       </div>
-      <div style={optionsStyle} className={this.props.optionsContainerClassName}>
-        {this.createInteractiveOptions()}
-      </div>
-    </div>;
+    );
   }
 });
 

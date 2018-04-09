@@ -7,11 +7,19 @@
 	"plugins": [
 		"react"
 	],
-    "rules": {
-      "react/jsx-handler-names": 2,
-      "react/no-multi-comp": 2,
-      "react/prop-types": 2,
-      "react/sort-comp": 2
-    },
+  "rules": {
+    "react/jsx-handler-names": 2,
+    "react/no-multi-comp": 2,
+    "react/prop-types": 2,
+    "react/sort-comp": 2
+  },
+  "overrides": [
+    {
+      "files": ["__browser__/**/*.js"],
+      "rules": {
+        "no-unused-expressions": "off"
+      }
+    }
+  ],
 	"extends": ["seatgeek-standard", "seatgeek-react-standard"]
 }

@@ -11,30 +11,18 @@ var initGulpTasks = require('react-component-gulp-tasks');
  */
 
 var taskConfig = {
-
   component: {
     name: 'index',
-    dependencies: [
-      'react',
-      'react-dom',
-      'prop-types',
-      'create-react-class'
-    ],
+    dependencies: ['react', 'react-dom', 'prop-types', 'create-react-class'],
     lib: 'lib'
   },
 
   example: {
     src: 'example/src',
     dist: 'example/dist',
-    files: [
-      'index.html',
-      '.gitignore'
-    ],
-    scripts: [
-      'example.js'
-    ]
+    files: ['index.html', '.gitignore'],
+    scripts: ['example.js']
   }
-
 };
 
 initGulpTasks(gulp, taskConfig);
