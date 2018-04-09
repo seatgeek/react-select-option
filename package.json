@@ -38,14 +38,14 @@
     "nightwatch": "^0.8.16",
     "prettier": "^1.7.4",
     "prop-types": "15.6.1",
-    "react": "^15.6.1",
+    "react": "^16.3.1",
     "react-component-gulp-tasks": "^0.7.6",
-    "react-dom": "^15.6.1"
+    "react-dom": "^16.3.1"
   },
   "peerDependencies": {
     "create-react-class": "^15.6.0",
     "prop-types": "^15.5.10",
-    "react": "^15.6.1"
+    "react": "^15.6.1 || ^16.x"
   },
   "browserify-shim": {},
   "scripts": {
