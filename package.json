@@ -23,7 +23,7 @@
     "eslint-config-seatgeek-standard": "^1.0.0",
     "eslint-config-standard": "^5.1.0",
     "eslint-plugin-react": "^3.5.1",
-    "flow-bin": "^0.21.0",
+    "flow-bin": "^0.69.0",
     "gulp": "^3.9.0",
     "nightwatch": "^0.8.16",
     "prop-types": "^15.5.10",
