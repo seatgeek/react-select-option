@@ -115,9 +115,10 @@ export default {
     }
 
     if (this.state.hoverIndex !== undefined) {
-      newStateObject.hoverIndex = e.keyCode === KEY_DOWN
-        ? Math.min(this.state.hoverIndex + 1, numberChildren - 1)
-        : Math.max(0, this.state.hoverIndex - 1);
+      newStateObject.hoverIndex =
+        e.keyCode === KEY_DOWN
+          ? Math.min(this.state.hoverIndex + 1, numberChildren - 1)
+          : Math.max(0, this.state.hoverIndex - 1);
     } else {
       newStateObject.hoverIndex = this.getSelectedIndex(this.props.value);
     }

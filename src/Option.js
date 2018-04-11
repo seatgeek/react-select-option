@@ -27,26 +27,37 @@ const Option = createReactClass({
   },
 
   shouldComponentUpdate(nextProps) {
-    return this.props.isHovering !== nextProps.isHovering ||
-        this.props.isActive !== nextProps.isActive ||
-        this.props.isSelected !== nextProps.isSelected ||
-        this.props.isDisplaying ||
-        this.props.isDisplaying !== nextProps.isDisplaying;
+    return (
+      this.props.isHovering !== nextProps.isHovering ||
+      this.props.isActive !== nextProps.isActive ||
+      this.props.isSelected !== nextProps.isSelected ||
+      this.props.isDisplaying ||
+      this.props.isDisplaying !== nextProps.isDisplaying
+    );
   },
 
   getRenderable() {
     var children = this.props.children;
     return typeof children === 'function'
-      ? children(this.props.isHovering, this.props.isActive, this.props.isSelected, this.props.isDisplaying)
+      ? children(
+          this.props.isHovering,
+          this.props.isActive,
+          this.props.isSelected,
+          this.props.isDisplaying
+        )
       : children;
   },
 
   render() {
-    return <div onMouseOver={this.props.onMouseOver}
-                onMouseUp={this.props.onMouseUp}
-                onMouseDown={this.props.onMouseDown}>
-      {this.getRenderable()}
-    </div>;
+    return (
+      <div
+        onMouseOver={this.props.onMouseOver}
+        onMouseUp={this.props.onMouseUp}
+        onMouseDown={this.props.onMouseDown}
+      >
+        {this.getRenderable()}
+      </div>
+    );
   }
 });
 

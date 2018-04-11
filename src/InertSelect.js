@@ -1,6 +1,6 @@
 /* @flow */
 
-import React from 'react';
+import * as React from 'react';
 import PropTypes from 'prop-types';
 import createReactClass from 'create-react-class';
 
@@ -42,7 +42,7 @@ const InertSelect = createReactClass({
   /*
     This attaches handlers to each prop.
    */
-  createInteractiveOptions(): Array<React.Element<any, any, any>> {
+  createInteractiveOptions(): Array<React.Element<any>> {
     // Can we cache this?
     return React.Children.map(this.props.children, (c, i) => {
       return React.cloneElement(c, {
@@ -56,7 +56,7 @@ const InertSelect = createReactClass({
     });
   },
 
-  getDisplayingChild(): React.Element<any, any, any> {
+  getDisplayingChild(): ?React.Element<any> {
     var child = React.Children.toArray(this.props.children).filter(c => {
       return c.props.value === this.props.value;
     })[0];
@@ -71,9 +71,10 @@ const InertSelect = createReactClass({
   },
 
   render() {
-    var optionsStyle = this.props.isExpanded && !this.props.disableDropdown
-      ? {}
-      : {display: 'none'};
+    var optionsStyle =
+      this.props.isExpanded && !this.props.disableDropdown
+        ? {}
+        : { display: 'none' };
 
     if (this.props.style.optionsContainerStyle) {
       optionsStyle = {
@@ -84,16 +85,30 @@ const InertSelect = createReactClass({
 
     var child = this.getDisplayingChild();
 
-    return <div className={this.props.containerClassName} style={this.props.style.selectContainerStyle || {}}>
-      <div onClick={this.props.isExpanded ? this.props.onClosed : this.props.onExpanded}>
-        {
-          this.props.displayingChildRenderer(child, this.props.isExpanded, this.props.isFocused)
-        }
+    return (
+      <div
+        className={this.props.containerClassName}
+        style={this.props.style.selectContainerStyle || {}}
+      >
+        <div
+          onClick={
+            this.props.isExpanded ? this.props.onClosed : this.props.onExpanded
+          }
+        >
+          {this.props.displayingChildRenderer(
+            child,
+            this.props.isExpanded,
+            this.props.isFocused
+          )}
+        </div>
+        <div
+          style={optionsStyle}
+          className={this.props.optionsContainerClassName}
+        >
+          {this.createInteractiveOptions()}
+        </div>
       </div>
-      <div style={optionsStyle} className={this.props.optionsContainerClassName}>
-        {this.createInteractiveOptions()}
-      </div>
-    </div>;
+    );
   }
 });
 

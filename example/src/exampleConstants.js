@@ -6,10 +6,10 @@ module.exports = {
   SELECT_CLASS_PREFIX: 'select-option',
 
   data: [
-    {value: 'A', label: 'Apple'},
-    {value: 'B', label: 'Banana'},
-    {value: 'F', label: 'Bandoneon'},
-    {value: 'D', label: 'Durian'},
-    {value: 'E', label: 'Cranberry'}
+    { value: 'A', label: 'Apple' },
+    { value: 'B', label: 'Banana' },
+    { value: 'F', label: 'Bandoneon' },
+    { value: 'D', label: 'Durian' },
+    { value: 'E', label: 'Cranberry' }
   ]
 };
